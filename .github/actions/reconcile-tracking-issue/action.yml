@@ -1,0 +1,248 @@
+# Reconcile a long-lived tracking issue with what a gate actually measured.
+#
+# WHY THIS IS A SHARED ACTION AND NOT COPIED INTO EACH WORKFLOW
+#
+# Two workflows in this repo filed automated tracking issues — `schema-drift.yaml`
+# (since deleted) and `e2e-post-promote.yaml` — and BOTH shipped the same defect: a `report-red`
+# job that could only ever OPEN or COMMENT. Neither had a close path, so both
+# issues were one-way latches that stayed open no matter what the gate later
+# measured. The cost is measured, not hypothetical:
+#
+#   #395 (schema drift)  open 26 days; read by a human AND an agent as "26 days
+#                        of unfixed drift", when it had been fixed on 09-13 and
+#                        re-broken on 09-14.
+#   #361 (e2e matrix)    open since 2026-08-08, 38 comments, title asserting
+#                        "matrix is RED" while the last run was GREEN.
+#
+# The same bug in two files is the argument for one implementation. The
+# open/close/reopen/dedupe MECHANICS live here, once. What stays in each caller
+# is the only part that legitimately differs: deciding whether this run actually
+# measured the thing the issue is about. That decision cannot be shared, because
+# "I compared nothing" means something different in each workflow.
+#
+# ⛔ THE `unverified` STATE IS THE POINT — DO NOT TREAT IT AS A SYNONYM FOR
+# `green`. A gate can exit 0 because it passed, or because it never ran. Closing
+# on the second converts a real red into a silent green, which is the failure
+# direction that costs money. Callers MUST pass `unverified` whenever the run
+# did not exercise the full subject of the issue, and this action will then
+# touch nothing at all.
+
+# ⛔ DO NOT WRITE A LITERAL DOLLAR-BRACE-BRACE TOKEN INTO ANY PARSED VALUE OF THIS FILE.
+# That means prose inside a `description:`, and ANY line inside a `run: |` block — including
+# a `#` line there, because block-scalar content is string data, not a YAML comment. GitHub
+# loads the YAML and scans the resulting string VALUES for expressions before the shell ever
+# runs, so a malformed one fails the ACTION LOAD with "An expression was expected" and not one
+# line of this script executes.
+#
+# That is exactly what happened on 2026-09-15, and the mechanism is narrower than first
+# reported: the `body-file` description explained that such an interpolation is a
+# shell-injection sink and contained an EMPTY one — GitHub pointed at it, "Line: 49, Col: 18".
+# The other literal on that commit sat in a `#` comment above `env:`, at YAML STRUCTURAL level;
+# the loader discards those, GitHub never saw it, and it was never a cause. Measured on the
+# pre-fix file: 8 raw occurrences, 7 reaching a parsed value, exactly 1 of them malformed.
+# Say "a template interpolation" instead.
+#
+# ⚠️ THE GUARD IS THE TEST — actionlint does NOT catch this. actionlint lints WORKFLOWS, not
+# composite actions: run 1.7.12 against the pre-fix file and it reports only `"jobs" section is
+# missing`, `"on" section is missing` and unexpected `description`/`inputs`/`runs` keys. It is
+# SILENT on the empty expression, and it is not installed in this repo's CI. What catches this
+# is e2e/helpers/__tests__/reconcile-tracking-issue.test.ts, which loads every
+# .github/actions/*/action.yml with a real YAML parser and checks every expression it finds in
+# the parsed values. Do not re-add the belief that a linter is covering you here.
+name: Reconcile tracking issue
+description: >-
+  Drive an automated tracking issue in BOTH directions — close it on a verified
+  green, reopen it on a red — reusing one durable issue instead of filing a new
+  one per episode.
+
+inputs:
+  title:
+    description: >-
+      Exact issue title. Used as the identity of the tracking issue, so it must
+      be stable across runs; changing it orphans the existing issue.
+    required: true
+  state:
+    description: >-
+      `green` (verified pass -> comment + close), `red` (failure -> create,
+      comment, or reopen), or `unverified` (this run did not measure the
+      subject -> do nothing, loudly). Anything else is an error.
+    required: true
+  body-file:
+    description: >-
+      PATH to a file holding the Markdown posted on `red`. Required when state is
+      `red`. A file, not a string, deliberately: these bodies are multi-line
+      Markdown full of backticks and `${...}`-looking text, and routing them
+      through a step output or a template interpolation is both an escaping
+      minefield and a shell-injection sink. A path has neither problem.
+    required: false
+    default: ''
+  resolution-file:
+    description: >-
+      PATH to a file saying WHY this counts as green, posted as a comment
+      immediately before closing. Required when state is `green`. File-based for
+      the same reason as `body-file`.
+    required: false
+    default: ''
+  token:
+    description: >-
+      Token with `issues: write`. That scope alone really is sufficient, and it
+      is load-bearing: every call this action makes is plain REST against
+      `/repos/{repo}/issues`. It reaches for no GraphQL and no search index, so
+      it cannot repeat the 2026-07 failure where an alarm died for six nights on
+      a GraphQL field its token could not see.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Reconcile
+      shell: bash
+      # Inputs are passed through `env`, never interpolated into the script
+      # source: a template expansion inside `run:` is a shell-injection sink, and
+      # `body` in particular is multi-line Markdown assembled by the caller.
+      env:
+        GH_TOKEN: ${{ inputs.token }}
+        TITLE: ${{ inputs.title }}
+        STATE: ${{ inputs.state }}
+        BODY_FILE: ${{ inputs.body-file }}
+        RESOLUTION_FILE: ${{ inputs.resolution-file }}
+        REPO: ${{ github.repository }}
+      run: |
+        set -euo pipefail
+
+        NOW=$(date -u +'%Y-%m-%d %H:%M UTC')
+
+        case "${STATE}" in
+          green|red|unverified) ;;
+          *)
+            echo "::error::reconcile-tracking-issue: state must be green, red or unverified (got '${STATE}')."
+            exit 1
+            ;;
+        esac
+
+        # --- unverified: the caller told us this run measured nothing ---------
+        # Deliberately BEFORE the issue lookup: there is nothing to decide, and a
+        # registry/API blip here must not fail a run that is otherwise fine.
+        if [ "${STATE}" = "unverified" ]; then
+          echo "::warning::Not reconciling \"${TITLE}\": this run did not measure its subject, so it is not evidence either way. A gate that exits 0 without running must never close a tracking issue."
+          exit 0
+        fi
+
+        # Read the caller's Markdown off disk. Checked for EXISTENCE and
+        # NON-EMPTINESS, not just presence of the input: an empty body would post
+        # a blank comment or, worse, open a blank issue, and a gate whose alarm is
+        # blank is no alarm. Fail loudly instead.
+        BODY=''
+        RESOLUTION=''
+        if [ "${STATE}" = "red" ]; then
+          if [ -z "${BODY_FILE}" ] || [ ! -s "${BODY_FILE}" ]; then
+            echo "::error::reconcile-tracking-issue: state=red requires 'body-file' to point at a NON-EMPTY file (got '${BODY_FILE}')."
+            exit 1
+          fi
+          BODY=$(cat "${BODY_FILE}")
+        else
+          if [ -z "${RESOLUTION_FILE}" ] || [ ! -s "${RESOLUTION_FILE}" ]; then
+            echo "::error::reconcile-tracking-issue: state=green requires 'resolution-file' to point at a NON-EMPTY file (got '${RESOLUTION_FILE}')."
+            exit 1
+          fi
+          RESOLUTION=$(cat "${RESOLUTION_FILE}")
+        fi
+
+        # --- Find every issue carrying the tracking title ---------------------
+        #
+        # ⚠️ DELIBERATELY NOT `gh issue list --search`, and not the search API at
+        # all. Two independent reasons, both learned the hard way in this repo:
+        #
+        #  1. NO GRAPHQL. `gh issue list` resolves through GraphQL. This alarm's
+        #     token is `issues: write`, and the last time an alarm here depended
+        #     on GraphQL reaching beyond that scope it failed silently for six
+        #     straight nights (`gh issue create` -> `repository.defaultBranchRef`,
+        #     2026-07-21..27). `GET /repos/{repo}/issues` is plain REST and needs
+        #     exactly the scope this job already has. An alarm must not depend on
+        #     more permission than the alarm needs.
+        #
+        #  2. NO SEARCH INDEX. GitHub's search index lags writes by seconds to
+        #     minutes. A freshly-created issue can be invisible to a search that
+        #     runs moments later, so the red path would file a DUPLICATE — and a
+        #     duplicate tracking issue is the same "state does not track reality"
+        #     failure this action exists to remove. The issues endpoint reads the
+        #     live table, so it cannot lag.
+        #
+        # COST, measured rather than waved past: this is O(all issues + PRs), not
+        # O(matches). At this repo's volume (~450 issues+PRs) that is 5 pages of
+        # 100, i.e. ~5 requests, at most twice a day across both workflows —
+        # negligible against a 5,000/hr budget, and it buys freedom from the
+        # search index. Revisit if the repo passes a few thousand; `since=` or a
+        # label filter would narrow it without going back to search.
+        #
+        # `state=all` because with a close path the issue we want may be CLOSED,
+        # and looking only at open ones would duplicate on every re-break.
+        # `select(.pull_request | not)` because this endpoint returns PRs too.
+        # Exact-title match, and `sort_by(.number)` for a deterministic pick.
+        issues=$(gh api --paginate "repos/${REPO}/issues?state=all&per_page=100" \
+                   --jq '.[] | select(.pull_request | not) | select(.title == env.TITLE) | {number, state, title}' \
+                 | jq -s 'sort_by(.number)')
+        open_nums=$(printf '%s' "$issues" | jq -r '[.[] | select(.state == "open") | .number] | .[]' || true)
+        newest_closed=$(printf '%s' "$issues" | jq -r '[.[] | select(.state == "closed") | .number] | last // empty')
+
+        # --- GREEN: verified pass -> comment the resolution, then close -------
+        if [ "${STATE}" = "green" ]; then
+          if [ -z "${open_nums}" ]; then
+            echo "Green, and no open issue titled \"${TITLE}\". Nothing to do."
+            exit 0
+          fi
+          close_body=$(printf '%s\n' \
+            "**Resolved — verified green as of ${NOW}.**" \
+            "" \
+            "${RESOLUTION}" \
+            "" \
+            "**Run:** ${GITHUB_SERVER_URL}/${REPO}/actions/runs/${GITHUB_RUN_ID}" \
+            "**Commit:** \`${GITHUB_SHA}\`" \
+            "" \
+            "Closing automatically. If this breaks again the SAME issue is reopened with a dated comment rather than a new one being filed, so the history above stays a single timeline." \
+            "" \
+            "_Closed automatically by the ${GITHUB_WORKFLOW} workflow._")
+          # Close EVERY open duplicate, not just the newest: the pre-2026-09-15
+          # workflows could only accumulate them, so this is also the self-healing
+          # path for any that already exist.
+          for n in ${open_nums}; do
+            gh api --method POST "repos/${REPO}/issues/${n}/comments" -f "body=${close_body}" --jq '.id' >/dev/null
+            # REST PATCH, not `gh issue close` — same measured reason as the create
+            # path below: with an `issues: write`-only token the `gh issue`
+            # subcommands reach for `repository.defaultBranchRef` over GraphQL and
+            # die with "Resource not accessible by integration". REST needs only
+            # the scope it was given.
+            gh api --method PATCH "repos/${REPO}/issues/${n}" \
+              -f state=closed -f state_reason=completed --jq '.number' >/dev/null
+            echo "closed issue #${n} (${TITLE})"
+          done
+          exit 0
+        fi
+
+        # --- RED --------------------------------------------------------------
+        if [ -n "${open_nums}" ]; then
+          # Already open: comment on the newest and leave the state alone, so a
+          # run-of-the-mill repeat red does not churn open/closed daily.
+          n=$(printf '%s\n' ${open_nums} | tail -n1)
+          gh api --method POST "repos/${REPO}/issues/${n}/comments" -f "body=${BODY}" --jq '.id' >/dev/null
+          echo "commented on existing open issue #${n}"
+        elif [ -n "${newest_closed}" ]; then
+          # Closed by an earlier green run and it is back: REOPEN the same issue
+          # rather than filing a new one, and date the comment so the timeline
+          # reads fixed -> re-broken rather than one endless grievance.
+          gh api --method PATCH "repos/${REPO}/issues/${newest_closed}" \
+            -f state=open -f state_reason=reopened --jq '.number' >/dev/null
+          gh api --method POST "repos/${REPO}/issues/${newest_closed}/comments" \
+            -f "body=$(printf '%s\n\n%s' "**Reopened ${NOW} — this regressed after being closed green.**" "${BODY}")" \
+            --jq '.id' >/dev/null
+          echo "reopened issue #${newest_closed}"
+        else
+          # REST, NOT `gh issue create` — measured: with an `issues: write`-only
+          # token, `gh issue create` resolves issue TEMPLATES first, which reads
+          # `repository.defaultBranchRef` via GraphQL and dies with "Resource not
+          # accessible by integration". That silently broke the e2e-post-promote
+          # alarm for six straight nights (2026-07-21..27); do not reintroduce it.
+          num=$(gh api --method POST "repos/${REPO}/issues" \
+                  -f "title=${TITLE}" -f "body=${BODY}" --jq '.number')
+          echo "opened issue #${num}"
+        fi

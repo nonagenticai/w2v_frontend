@@ -1,0 +1,123 @@
+#!/usr/bin/env sh
+# w2v_frontend pre-push gate.
+#
+# ── Why this file has to exist in the REPO ─────────────────────────────────
+# husky sets core.hooksPath=.husky/_ and generates a 39-byte shim there for
+# every hook name, including pre-push. Each shim sources `_/h`, whose line 6 is:
+#
+#     [ ! -f "$s" ] && exit 0
+#
+# ...where `$s` is `.husky/<hookname>`. This repo had `.husky/pre-commit` but no
+# `.husky/pre-push`, so the shim existed, git ran it, and it exited 0 without
+# running anything. A census that scores gate health on FILE PRESENCE reads that
+# as HEALTHY; nothing was gating a push.
+#
+# The fleet hook installer (the fleet hook installer) will NOT
+# fix this from the outside, deliberately: `.husky/_` is gitignored and npm
+# REGENERATES it on every install, and overwriting `_/pre-commit` would orphan
+# this repo's real tracked `.husky/pre-commit`, removing a working gate to add
+# one. So wiring a pre-push here is the repo's own job — this file.
+#
+# ── The gate is a strict SUBSET of CI ──────────────────────────────────────
+# `.github/workflows/ci-cd.yaml` -> gitops `ts-service.yml` runs, in order:
+#     bun run format:check     (package.json declares it -> CI runs it)
+#     bun run ci:verify        (= check && type-drift:check && check:e2e && lint;
+#                               `check` runs codegen first via `precheck`)
+#     bun run build
+#     bun run test:run
+# Every command below is drawn from that list. Nothing here is invented, and
+# nothing here is stricter than CI. A local gate STRICTER than CI is a gate that
+# cannot pass, and it teaches `git push --no-verify` within a day (gitops #2316
+# shipped exactly that mistake and had to be reverted).
+#
+# `check` regenerates the gitignored src/lib/api/types.gen.ts from the live
+# @latest orchestrator contract (`precheck` -> codegen), so it must run before
+# `type-drift:check`, which reads that file.
+#
+# Deliberately EXCLUDED from CI's list:
+#
+#   build          A production vite build proves nothing `check` does not, and
+#                  costs minutes.
+#   test:run       CI owns the 123 vitest files. Running them here would roughly
+#                  double an already slow gate for a signal CI produces
+#                  authoritatively on every push anyway.
+#
+# ── Measured on this repo, clean origin/main, 2026-07-31 (loaded dev Mac) ───
+#     format:check    34.2s wall / 14.4s user   exit 0
+#     check           150.4s wall / 24.3s user  exit 0   (svelte-check)
+#     lint            1376.5s wall / 117.3s user exit 0  (eslint .)
+# Note lint's 11.7x wall/CPU ratio. That is CONTENTION, not slow code — which is
+# exactly why a timeout below WARNS and lets the push through instead of
+# blocking. Wall-clock measures machine load; only a non-zero exit is evidence
+# about the code. Ordered cheapest-first so a genuinely broken push is rejected
+# in ~30s rather than after 25 minutes.
+#
+# Override the budget when your machine is simply busy:
+#     PREPUSH_TIMEOUT=2400 git push
+
+set -u
+
+FAILED=0
+
+# `sh -e "$s"` is how husky's `h` invokes us, so a bare failing command would
+# abort the whole hook at the first check and hide the rest. Every check below
+# therefore captures its own exit code and we decide at the end.
+set +e
+
+if [ ! -d node_modules ]; then
+  echo "⏭️  w2v_frontend pre-push: no node_modules — skipping checks."
+  echo "   Run: NODE_TLS_REJECT_UNAUTHORIZED=0 bun install --frozen-lockfile"
+  echo "   (the internal Verdaccio registry uses a self-signed CA; CI sets the"
+  echo "    same env var). CI runs these checks authoritatively regardless."
+  exit 0
+fi
+
+if ! command -v bun >/dev/null 2>&1; then
+  echo "⏭️  w2v_frontend pre-push: bun not on PATH — skipping (CI pins bun 1.3.11)."
+  exit 0
+fi
+
+BUDGET="${PREPUSH_TIMEOUT:-900}"
+
+run_check() {
+  _name="$1"
+  echo "▶ pre-push: bun run $_name"
+  if command -v timeout >/dev/null 2>&1; then
+    timeout "$BUDGET" bun run "$_name"
+    _rc=$?
+  else
+    # macOS without coreutils has no `timeout`. Run unbounded rather than
+    # skipping the check — a slow gate still gates; a skipped one does not.
+    bun run "$_name"
+    _rc=$?
+  fi
+
+  if [ "$_rc" -eq 0 ]; then
+    echo "✅ $_name passed"
+  elif [ "$_rc" -eq 124 ]; then
+    # ⚠️ NOT a failure. See the wall-clock note above: a timeout is no evidence
+    # about correctness, and blocking on it trains people to use --no-verify.
+    echo "⚠️  $_name exceeded ${BUDGET}s wall — NOT blocking (CI runs it authoritatively)."
+    echo "   Raise it if your machine is just loaded: PREPUSH_TIMEOUT=2400 git push"
+  else
+    echo "❌ $_name FAILED (exit $_rc)"
+    FAILED=1
+  fi
+}
+
+run_check format:check
+run_check check
+run_check type-drift:check
+run_check lint
+
+if [ "$FAILED" -eq 0 ]; then
+  echo "✅ w2v_frontend pre-push: PUSH ALLOWED"
+  exit 0
+fi
+
+echo ""
+echo "❌ w2v_frontend pre-push: PUSH BLOCKED"
+echo "   CI runs these same commands and will fail the same way."
+echo "   Autofix what you can:  bun run format  /  bun run lint:fix"
+echo "   Emergency bypass only: git push --no-verify"
+exit 1

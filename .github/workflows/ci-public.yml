@@ -1,0 +1,96 @@
+# CI for a PUBLIC repository — self-contained, GitHub-hosted runners (Bun).
+#
+# ⛔ Why this file replaces the private workflow rather than extending it:
+#   1. A public repo CANNOT consume the estate archetype: a public workflow cannot
+#      read a private repo. The run does not fail — it dies at startup with zero jobs.
+#   2. A public repo CANNOT use the ARC self-hosted pools (`allows_public_repositories:false`
+#      on both runner groups, and that must stay false: a fork PR can edit `runs-on`).
+#   3. GitHub-hosted standard runners are free and unlimited on public repos.
+#
+# ⛔ Every job is gated on `!github.event.repository.private`. The org's Actions billing is in
+#    a failed state, so a PRIVATE repo cannot start an ubuntu-latest job at all. The gate lets
+#    this file land while the repo is private and activate with zero edits at the flip.
+#
+# ⛔ The repository must resolve packages from the PUBLIC npm registry: a `bun.lock` whose
+#    entries point at the estate's internal registry makes every install fail for an outsider,
+#    and an `.npmrc` naming that registry overrides the public default.
+#
+# `bun-version` is pinned deliberately — a floating Bun changes the lockfile and the
+# toolchain under every consumer. Bump it here, in one commit, or not at all.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  contents: read
+
+jobs:
+  secret-scan:
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - name: install betterleaks 1.10.1 (pinned, sha256-verified)
+        run: |
+          set -euo pipefail
+          version=1.10.1
+          sha=c174b42d7aa60caf58c0c3e555c0e4bed01fe6b0d99a412bce777b5af4ce913e
+          curl -fsSL -o "$RUNNER_TEMP/betterleaks.tgz" \
+            "https://github.com/betterleaks/betterleaks/releases/download/v${version}/betterleaks_${version}_linux_x64.tar.gz"
+          echo "${sha}  $RUNNER_TEMP/betterleaks.tgz" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/betterleaks.tgz" -C "$RUNNER_TEMP" betterleaks
+      - name: scan the tree
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/betterleaks" dir --redact --exit-code 1 --no-banner \
+            --config=.betterleaks.toml \
+            --gitleaks-ignore-path .betterleaksignore .
+
+  no-private-refs:
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - name: scan tracked files
+        run: bash scripts/ci/no-private-refs.sh
+
+  checks:
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.11
+
+      - name: install (locked)
+        run: bun install --frozen-lockfile
+
+      - name: typecheck
+        run: bun run check
+
+      - name: lint
+        run: bun run lint
+
+      - name: test
+        run: bun run test:run
+
+      - name: build
+        run: bun run build
+
+      # No dependency audit here: `bun audit` reads the whole installed tree and has no
+      # production-only mode, so gating on it would gate what ships on dev-toolchain
+      # advisories — the rule the ts template spells out. Advisories are tracked by
+      # Dependabot alerts, which are enabled on the repo.

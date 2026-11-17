@@ -1,0 +1,13 @@
+# Revisions listed here are skipped by `git blame` so that mass-mechanical
+# reformatting commits don't pollute authorship of every touched line.
+#
+# Activate locally once with:
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+#
+# GitHub's web blame view honours this file automatically.
+#
+# Only mass-mechanical reformatting / generated-file regenerations belong
+# here. Never list a commit that contains logic changes.
+
+# chore: prettier sweep + .git-blame-ignore-revs (formatting only) (#65)
+5afc130c9169fac1e091fffc9e99d9a0189fd6e6

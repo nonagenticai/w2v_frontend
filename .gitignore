@@ -1,0 +1,26 @@
+node_modules
+.svelte-kit
+build
+.env
+.env.*
+!.env.example
+
+# npm auth token lives in ~/.npmrc; per-repo .npmrc only sets registry + strict-ssl
+.npmrc
+
+# bun is the package manager (bun.lock is canonical). A stray `npm install`
+# regenerates package-lock.json and reintroduces dual-lockfile drift — ignore it.
+package-lock.json
+
+# Playwright
+playwright-report
+test-results
+playwright/.cache
+
+# macOS
+.DS_Store
+.worktrees/
+e2e/.auth/
+01_recent_push_failure.txt
+
+# Generated at codegen time from the live @latest orchestrator contract
