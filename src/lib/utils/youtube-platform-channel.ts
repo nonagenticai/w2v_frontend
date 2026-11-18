@@ -10,8 +10,7 @@ export interface PlatformChannelForm {
 }
 
 export type PlatformChannelDraft =
-	| { ok: true; body: YouTubePlatformChannelPut }
-	| { ok: false; reason: string };
+	{ ok: true; body: YouTubePlatformChannelPut } | { ok: false; reason: string };
 
 /**
  * The PUT body for the platform channel form, or why it cannot be sent.

@@ -10,13 +10,7 @@ import type { components } from '$lib/api/types.gen.js';
 export type SourceType = 'web' | 'ios' | 'android' | 'other';
 
 export type PipelineStatus =
-	| 'pending'
-	| 'processing'
-	| 'completed'
-	| 'failed'
-	| 'cancelled'
-	| 'paused'
-	| 'awaiting_review';
+	'pending' | 'processing' | 'completed' | 'failed' | 'cancelled' | 'paused' | 'awaiting_review';
 
 export type StageStatus =
 	| 'pending'
@@ -1433,10 +1427,7 @@ export type YouTubePrivacyStatus = 'public' | 'unlisted' | 'private';
 
 /** youtube_upload_service `AuthStatusResponse.status`. */
 export type YouTubeConnectionState =
-	| 'connected'
-	| 'reconnect_required'
-	| 'platform_default'
-	| 'not_connected';
+	'connected' | 'reconnect_required' | 'platform_default' | 'not_connected';
 
 /**
  * Which channel an upload for this tenant would use (per-tenant YouTube config):

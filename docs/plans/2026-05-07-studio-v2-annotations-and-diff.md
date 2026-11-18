@@ -329,10 +329,7 @@ In the stage editor `+page.svelte`:
 				name === 'annotation_applied'
 			) {
 				const evt = name.replace('annotation_', '') as
-					| 'created'
-					| 'updated'
-					| 'dismissed'
-					| 'applied';
+					'created' | 'updated' | 'dismissed' | 'applied';
 				annotationsStore.applyEvent(data.jobId, payload.stage_name, evt, payload);
 			}
 		}

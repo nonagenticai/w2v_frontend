@@ -15,11 +15,7 @@ import { api } from './client.js';
 import { TENANT_NOT_ONBOARDED_MESSAGE } from './onboarding.js';
 
 export type LicenceLookupState =
-	| 'ok'
-	| 'no_active_licence'
-	| 'multiple_active_licences'
-	| 'not_onboarded'
-	| 'unavailable';
+	'ok' | 'no_active_licence' | 'multiple_active_licences' | 'not_onboarded' | 'unavailable';
 
 /** `TenantLimit`. */
 export interface TenantLimitRow {

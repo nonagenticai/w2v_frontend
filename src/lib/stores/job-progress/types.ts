@@ -14,12 +14,7 @@ import type { RunStatus, RunEventName } from '$lib/types/runs';
 // 'cancelled' — orchestrator PR #706: stages stranded pending/running when a run
 // hard-fails are swept to a terminal 'cancelled' (they never ran).
 export type StageProgressStatus =
-	| 'pending'
-	| 'running'
-	| 'completed'
-	| 'failed'
-	| 'skipped'
-	| 'cancelled';
+	'pending' | 'running' | 'completed' | 'failed' | 'skipped' | 'cancelled';
 
 export interface StageState {
 	/** Free-form stage name. Studio v3 stages are blueprint-driven; the FE no

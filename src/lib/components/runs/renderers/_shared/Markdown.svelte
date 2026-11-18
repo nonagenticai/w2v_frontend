@@ -17,8 +17,7 @@
 		| { t: 'code'; v: string }
 		| { t: 'link'; v: string; href: string };
 	type Block =
-		| { type: 'h1' | 'h2' | 'h3' | 'p'; segs: Seg[] }
-		| { type: 'ul' | 'ol'; items: Seg[][] };
+		{ type: 'h1' | 'h2' | 'h3' | 'p'; segs: Seg[] } | { type: 'ul' | 'ol'; items: Seg[][] };
 
 	const INLINE =
 		/(\*\*([^*]+)\*\*)|(`([^`]+)`)|(\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\))|(\*([^*]+)\*)/g;
