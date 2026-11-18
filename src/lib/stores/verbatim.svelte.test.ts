@@ -64,8 +64,7 @@ function snap(projectId: string): unknown {
  */
 function patchArgs(call: unknown[]): { id: string; position: number | undefined } {
 	const body = call.find((a) => typeof a === 'object' && a !== null) as
-		| { position?: number }
-		| undefined;
+		{ position?: number } | undefined;
 	const strings = call.filter((a): a is string => typeof a === 'string');
 	return { id: strings[strings.length - 1], position: body?.position };
 }

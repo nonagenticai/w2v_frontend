@@ -26,13 +26,7 @@ import { api } from '$lib/api/client';
 import { TENANT_NOT_ONBOARDED_MESSAGE } from '$lib/api/onboarding';
 
 export type LicenseGateState =
-	| 'active'
-	| 'expiring_soon'
-	| 'expired'
-	| 'revoked'
-	| 'none'
-	| 'not_onboarded'
-	| 'unknown';
+	'active' | 'expiring_soon' | 'expired' | 'revoked' | 'none' | 'not_onboarded' | 'unknown';
 
 export interface LicenseStatusResponse {
 	appKey: string;

@@ -1231,13 +1231,7 @@ export async function mergeIntoBranch(
  *   'conflict'    — 409: somebody else moved the panel (lost compare-and-swap).
  */
 export type PanelImageUiStatus =
-	| 'queued'
-	| 'running'
-	| 'completed'
-	| 'failed'
-	| 'lost'
-	| 'unavailable'
-	| 'conflict';
+	'queued' | 'running' | 'completed' | 'failed' | 'lost' | 'unavailable' | 'conflict';
 
 export type PanelImageUiState = {
 	jobId: string | null;
