@@ -2659,7 +2659,7 @@ export interface paths {
          * Stream this panel's generated image from in-cluster MinIO
          * @description Serve the panel's own image to the browser.
          *
-         *     ``media_ref.url`` points at ``minio.internal``, which does not resolve outside
+         *     ``media_ref.url`` points at ``the cluster-internal object store``, which does not resolve outside
          *     the cluster, so the SPA is handed this path instead (see
          *     ``api/panel_image_url``). The bytes are read with the orchestrator's own MinIO
          *     credentials, which carry no expiry — unlike the stored 1h presigned signature.
@@ -2711,7 +2711,7 @@ export interface paths {
          *     path is a 404 for the same reason.
          *
          *     ``media_ref.url`` is rewritten to the panel's image-proxy path on the way out
-         *     (``api/panel_image_url``); the stored ``minio.internal`` URL would not load in
+         *     (``api/panel_image_url``); the stored ``the cluster-internal object store`` URL would not load in
          *     a browser.
          */
         get: operations["storyboard.panels.imageJob"];
@@ -7051,7 +7051,7 @@ export interface components {
          *
          *     A generated ``media_ref.url`` is served as the panel's image-proxy path
          *     (``/api/storyboard/panels/{id}/image/content``) rather than the stored
-         *     ``minio.internal`` URL, which no browser outside the cluster can resolve; a url
+         *     ``the cluster-internal object store`` URL, which no browser outside the cluster can resolve; a url
          *     the proxy cannot serve (an external image) is passed through untouched. The
          *     path addresses the PANEL's current image rather than this job's snapshot of
          *     it, so a client that caches an image url is caching a pointer to the durable
