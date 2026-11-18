@@ -140,21 +140,19 @@
 	const chapters = $derived(
 		rawChapters
 			.filter((c) => !c.hidden)
-			.map(
-				(c, i): StorylineChapter => ({
-					// Position is the fallback identity for a producer that does not number
-					// its chapters — a bare `c.sequence` made all N rows key as `undefined`,
-					// and the resulting each_key_duplicate blanked the entire run page.
-					number: c.sequence ?? i + 1,
-					title: c.title ?? `Chapter ${i + 1}`,
-					subtitle: '',
-					estimated_duration_seconds: c.duration_seconds ?? 0,
-					start_seconds: c.start_seconds ?? c.start,
-					duration_seconds: c.duration_seconds,
-					level: c.level ?? 0,
-					parent_sequence: c.parent_sequence ?? null
-				})
-			)
+			.map((c, i): StorylineChapter => ({
+				// Position is the fallback identity for a producer that does not number
+				// its chapters — a bare `c.sequence` made all N rows key as `undefined`,
+				// and the resulting each_key_duplicate blanked the entire run page.
+				number: c.sequence ?? i + 1,
+				title: c.title ?? `Chapter ${i + 1}`,
+				subtitle: '',
+				estimated_duration_seconds: c.duration_seconds ?? 0,
+				start_seconds: c.start_seconds ?? c.start,
+				duration_seconds: c.duration_seconds,
+				level: c.level ?? 0,
+				parent_sequence: c.parent_sequence ?? null
+			}))
 	);
 	const hasChapters = $derived(chapters.length >= 2);
 	// Editable only when there is at least one level-0 marker keyed by a pid.
