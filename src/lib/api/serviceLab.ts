@@ -150,14 +150,7 @@ export function runPrompt(run: ServiceRun): string {
 }
 
 export type ServiceErrorKind =
-	| 'byo'
-	| 'unavailable'
-	| 'invalid'
-	| 'rate_limited'
-	| 'upstream'
-	| 'busy'
-	| 'timeout'
-	| 'other';
+	'byo' | 'unavailable' | 'invalid' | 'rate_limited' | 'upstream' | 'busy' | 'timeout' | 'other';
 
 export interface ServiceLabError {
 	kind: ServiceErrorKind;

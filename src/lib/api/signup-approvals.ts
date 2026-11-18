@@ -64,13 +64,7 @@ export type SignupStepName = (typeof SIGNUP_STEPS)[number];
  * survives when the send never reported back (process killed mid-send).
  */
 export type SignupStepStatus =
-	| 'ok'
-	| 'skipped'
-	| 'failed'
-	| 'waiting'
-	| 'unknown'
-	| 'in_flight'
-	| 'pending';
+	'ok' | 'skipped' | 'failed' | 'waiting' | 'unknown' | 'in_flight' | 'pending';
 
 /**
  * `core.UNCERTAIN_SEND`: an email send whose outcome is not known. Never re-sent
@@ -106,12 +100,7 @@ export type RemovalStepName = (typeof REMOVAL_STEPS)[number];
 
 /** `removal.StepStatus`, plus `waiting` — a step that has not run yet. */
 export type RemovalStepStatus =
-	| 'ok'
-	| 'skipped'
-	| 'pending'
-	| 'in_progress'
-	| 'blocked'
-	| 'waiting';
+	'ok' | 'skipped' | 'pending' | 'in_progress' | 'blocked' | 'waiting';
 
 /**
  * `removal.state`: `pending` (running / retried automatically), `blocked` (stopped

@@ -67,19 +67,18 @@
 	});
 
 	const lbItems = $derived(
-		tiles.map(
-			(t): LightboxItem =>
-				t.video
-					? {
-							url: t.video,
-							kind: 'video',
-							label: t.line ? `Line ${t.line.slice(0, 6)}` : undefined
-						}
-					: {
-							url: t.image ?? '',
-							kind: 'image',
-							label: t.line ? `Line ${t.line.slice(0, 6)}` : undefined
-						}
+		tiles.map((t): LightboxItem =>
+			t.video
+				? {
+						url: t.video,
+						kind: 'video',
+						label: t.line ? `Line ${t.line.slice(0, 6)}` : undefined
+					}
+				: {
+						url: t.image ?? '',
+						kind: 'image',
+						label: t.line ? `Line ${t.line.slice(0, 6)}` : undefined
+					}
 		)
 	);
 

@@ -24,13 +24,7 @@ import {
 import type { ProjectDetailResponse } from '$lib/types';
 
 export type SectionId =
-	| 'deliverables'
-	| 'lessons'
-	| 'brief'
-	| 'verbatim'
-	| 'storyboard'
-	| 'outputs'
-	| 'history';
+	'deliverables' | 'lessons' | 'brief' | 'verbatim' | 'storyboard' | 'outputs' | 'history';
 
 // Types whose blueprints render from an authored storyboard (generic
 // script_draft + demo_video gen short-circuit on brief.storyboard / the

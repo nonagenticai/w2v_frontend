@@ -137,8 +137,7 @@ function documentWasReloadedHere(): boolean {
 		return true;
 	}
 	const nav = performance.getEntriesByType('navigation')[0] as
-		| PerformanceNavigationTiming
-		| undefined;
+		PerformanceNavigationTiming | undefined;
 	if (!nav) return true;
 	if (nav.type !== 'reload' && nav.type !== 'back_forward') return false;
 	try {
