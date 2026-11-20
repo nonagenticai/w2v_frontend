@@ -2,7 +2,7 @@
 # (oven/bun:<tag>, pushed from oven/bun). bun is both
 # the package manager and the container runtime; keep the tag in lockstep with
 # ci-cd.yaml's bun_version + local bun to avoid lockfile skew.
-FROM oven/bun:1.3.11-alpine AS builder
+FROM oven/bun:1.4.4-alpine AS builder
 
 # Build arguments for Vite (become env vars baked into the SPA bundle)
 ARG VITE_KEYCLOAK_URL
