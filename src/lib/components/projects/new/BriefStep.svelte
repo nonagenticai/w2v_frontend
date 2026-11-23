@@ -62,9 +62,9 @@
 		</p>
 	{:else if cloneables.length > 0}
 		<label class="block space-y-1">
-			<span class="text-xs font-medium text-[var(--color-text-muted)]"
-				>Clone settings from (optional)</span
-			>
+			<span class="text-xs font-medium text-[var(--color-text-muted)]">
+				Clone settings from (optional)
+			</span>
 			<select
 				data-testid="clone-from"
 				class="w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm text-[var(--color-text)] focus:border-[var(--color-accent)] focus:outline-none"

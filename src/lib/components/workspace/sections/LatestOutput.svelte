@@ -58,9 +58,9 @@
 		<h2 class="text-sm font-semibold text-[var(--color-text)]">
 			Latest output
 			{#if run.completed_at}
-				<span class="ml-1 text-xs font-normal text-[var(--color-text-muted)]"
-					>finished {formatRelativeTime(run.completed_at)}</span
-				>
+				<span class="ml-1 text-xs font-normal text-[var(--color-text-muted)]">
+					finished {formatRelativeTime(run.completed_at)}
+				</span>
 			{/if}
 		</h2>
 		<a

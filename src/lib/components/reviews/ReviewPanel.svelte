@@ -52,9 +52,9 @@
 								<span class="text-sm font-bold {scoreColor(cat.score)}">{cat.score}</span>
 							</div>
 						</div>
-						<span class="text-xs text-text-secondary text-center leading-tight"
-							>{formatCategoryName(name)}</span
-						>
+						<span class="text-xs text-text-secondary text-center leading-tight">
+							{formatCategoryName(name)}
+						</span>
 						{#if cat.observations && cat.observations.length > 0}
 							<ul class="text-[11px] text-text-secondary list-disc list-inside mt-1 space-y-0.5">
 								{#each cat.observations.slice(0, 2) as obs, i (i)}

@@ -444,9 +444,9 @@
 
 							{#if wizard.ttsProvider === 'kokoro'}
 								<div class="flex flex-col gap-1.5">
-									<label for="voice" class="text-sm font-medium text-[var(--color-text-muted)]"
-										>Voice</label
-									>
+									<label for="voice" class="text-sm font-medium text-[var(--color-text-muted)]">
+										Voice
+									</label>
 									<select id="voice" name="voice" bind:value={wizard.voice} class={inputClasses}>
 										{#each kokoroVoiceGroups as group (group.label)}
 											<optgroup label={group.label}>
@@ -461,8 +461,10 @@
 								<div class="space-y-1">
 									<label
 										for="kittenVoice"
-										class="text-sm font-medium text-[var(--color-text-muted)]">Voice</label
+										class="text-sm font-medium text-[var(--color-text-muted)]"
 									>
+										Voice
+									</label>
 									<select
 										id="kittenVoice"
 										bind:value={wizard.voice}
@@ -487,11 +489,13 @@
 									<div class="flex items-center justify-between">
 										<label
 											for="narrationSpeed"
-											class="text-sm font-medium text-[var(--color-text-muted)]">Speed</label
+											class="text-sm font-medium text-[var(--color-text-muted)]"
 										>
-										<span class="text-sm font-semibold text-[var(--color-text)]"
-											>{wizard.narrationSpeed.toFixed(1)}x</span
-										>
+											Speed
+										</label>
+										<span class="text-sm font-semibold text-[var(--color-text)]">
+											{wizard.narrationSpeed.toFixed(1)}x
+										</span>
 									</div>
 									<input
 										id="narrationSpeed"
@@ -519,10 +523,10 @@
 									class="rounded-lg border border-[var(--color-accent)] bg-[var(--color-accent-bg)] px-4 py-3"
 								>
 									<p class="text-sm text-[var(--color-accent)]">
-										Using server configuration: <span class="font-semibold"
-											>{providerOptions.find((p) => p.value === serverProvider)?.label ??
-												serverProvider}</span
-										>
+										Using server configuration: <span class="font-semibold">
+											{providerOptions.find((p) => p.value === serverProvider)?.label ??
+												serverProvider}
+										</span>
 									</p>
 									<p class="text-xs text-[var(--color-accent)] mt-1">
 										Pre-configured via environment variables. You can still change values below.
@@ -557,9 +561,9 @@
 
 							<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 								<div class="flex flex-col gap-1.5">
-									<label for="modelFast" class="text-sm font-medium text-[var(--color-text-muted)]"
-										>Fast tier</label
-									>
+									<label for="modelFast" class="text-sm font-medium text-[var(--color-text-muted)]">
+										Fast tier
+									</label>
 									<p class="text-xs text-[var(--color-text-muted)]">Analyze, Narrate, Shotlist</p>
 									<select
 										id="modelFast"
@@ -575,8 +579,10 @@
 								<div class="flex flex-col gap-1.5">
 									<label
 										for="modelBalanced"
-										class="text-sm font-medium text-[var(--color-text-muted)]">Balanced tier</label
+										class="text-sm font-medium text-[var(--color-text-muted)]"
 									>
+										Balanced tier
+									</label>
 									<p class="text-xs text-[var(--color-text-muted)]">Review, Storyline, Critique</p>
 									<select
 										id="modelBalanced"
@@ -592,8 +598,10 @@
 								<div class="flex flex-col gap-1.5">
 									<label
 										for="modelCapable"
-										class="text-sm font-medium text-[var(--color-text-muted)]">Capable tier</label
+										class="text-sm font-medium text-[var(--color-text-muted)]"
 									>
+										Capable tier
+									</label>
 									<p class="text-xs text-[var(--color-text-muted)]">Generate, Validate</p>
 									<select
 										id="modelCapable"
@@ -641,12 +649,12 @@
 															<div class="flex items-center justify-between">
 																<div class="flex-1 min-w-0">
 																	<div class="flex items-center gap-2">
-																		<span class="text-sm font-medium text-[var(--color-text)]"
-																			>{stage.name}</span
-																		>
-																		<span class="text-xs text-[var(--color-text-muted)]"
-																			>{stage.desc}</span
-																		>
+																		<span class="text-sm font-medium text-[var(--color-text)]">
+																			{stage.name}
+																		</span>
+																		<span class="text-xs text-[var(--color-text-muted)]">
+																			{stage.desc}
+																		</span>
 																	</div>
 																	{#if !isOverridden}
 																		<p class="text-xs text-[var(--color-text-muted)] mt-1">
@@ -676,8 +684,10 @@
 																	<div class="flex flex-col gap-1">
 																		<label
 																			for="provider-{stage.key}"
-																			class="text-xs text-[var(--color-text-muted)]">Provider</label
+																			class="text-xs text-[var(--color-text-muted)]"
 																		>
+																			Provider
+																		</label>
 																		<select
 																			id="provider-{stage.key}"
 																			class={inputClasses}
@@ -688,11 +698,11 @@
 																					(e.target as HTMLSelectElement).value
 																				)}
 																		>
-																			<option value=""
-																				>Same as global ({providerOptions.find(
+																			<option value="">
+																				Same as global ({providerOptions.find(
 																					(p) => p.value === wizard.llmProvider
-																				)?.label})</option
-																			>
+																				)?.label})
+																			</option>
 																			{#each providerOptions as opt (opt.value)}
 																				<option value={opt.value}>{opt.label}</option>
 																			{/each}
@@ -701,8 +711,10 @@
 																	<div class="flex flex-col gap-1">
 																		<label
 																			for="model-{stage.key}"
-																			class="text-xs text-[var(--color-text-muted)]">Model</label
+																			class="text-xs text-[var(--color-text-muted)]"
 																		>
+																			Model
+																		</label>
 																		<select
 																			id="model-{stage.key}"
 																			class={inputClasses}
@@ -741,8 +753,10 @@
 							<div class="flex flex-col gap-1.5">
 								<label
 									for="device-select"
-									class="text-sm font-medium text-[var(--color-text-muted)]">Device</label
+									class="text-sm font-medium text-[var(--color-text-muted)]"
 								>
+									Device
+								</label>
 								<select id="device-select" bind:value={wizard.deviceName} class={inputClasses}>
 									{#each isMobilePlatform ? (wizard.deviceName && iosDevices.includes(wizard.deviceName) ? iosDevices : androidDevices) : [] as device (device)}
 										<option value={device}>{device}</option>
@@ -775,9 +789,12 @@
 
 							{#if wizard.theme === 'custom'}
 								<div class="flex items-center gap-3">
-									<label for="brandColor" class="text-sm font-medium text-[var(--color-text-muted)]"
-										>Brand Color</label
+									<label
+										for="brandColor"
+										class="text-sm font-medium text-[var(--color-text-muted)]"
 									>
+										Brand Color
+									</label>
 									<div class="flex items-center gap-2">
 										<input
 											type="color"
@@ -817,11 +834,13 @@
 								<div class="flex items-center justify-between">
 									<label
 										for="videoQuality"
-										class="text-sm font-medium text-[var(--color-text-muted)]">Quality</label
+										class="text-sm font-medium text-[var(--color-text-muted)]"
 									>
-									<span class="text-sm font-semibold text-[var(--color-text)]"
-										>{wizard.videoQuality}%</span
-									>
+										Quality
+									</label>
+									<span class="text-sm font-semibold text-[var(--color-text)]">
+										{wizard.videoQuality}%
+									</span>
 								</div>
 								<input
 									id="videoQuality"

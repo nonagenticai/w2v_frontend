@@ -96,8 +96,10 @@
 							href={safeHref(ref)}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-xs text-[var(--color-accent)] hover:underline break-all">{ref}</a
+							class="text-xs text-[var(--color-accent)] hover:underline break-all"
 						>
+							{ref}
+						</a>
 					</li>
 				{/each}
 			</ul>

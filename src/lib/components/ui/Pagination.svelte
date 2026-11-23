@@ -57,14 +57,16 @@
 	<div class="flex items-center justify-between {className}">
 		<p class="text-sm text-[var(--color-text-muted)]">
 			Showing <span class="font-medium text-[var(--color-text)]">{showingFrom}</span>–<span
-				class="font-medium text-[var(--color-text)]">{showingTo}</span
+				class="font-medium text-[var(--color-text)]"
 			>
+				{showingTo}
+			</span>
 			of <span class="font-medium text-[var(--color-text)]">{total}</span>
 		</p>
 		<div class="flex items-center gap-1">
-			<Button variant="secondary" size="sm" disabled={page <= 1} onclick={() => go(page - 1)}
-				>Previous</Button
-			>
+			<Button variant="secondary" size="sm" disabled={page <= 1} onclick={() => go(page - 1)}>
+				Previous
+			</Button>
 			{#each pages as p, i (i)}
 				{#if p === null}
 					<span class="px-2 text-[var(--color-text-muted)]">&hellip;</span>
@@ -76,16 +78,19 @@
 						page
 							? 'bg-[var(--color-accent)] text-[var(--color-on-primary)]'
 							: 'text-[var(--color-text-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-text)]'}"
-						>{p}</button
 					>
+						{p}
+					</button>
 				{/if}
 			{/each}
 			<Button
 				variant="secondary"
 				size="sm"
 				disabled={page >= totalPages}
-				onclick={() => go(page + 1)}>Next</Button
+				onclick={() => go(page + 1)}
 			>
+				Next
+			</Button>
 		</div>
 	</div>
 {/if}

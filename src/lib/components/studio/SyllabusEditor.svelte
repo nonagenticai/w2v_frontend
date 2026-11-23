@@ -70,14 +70,13 @@
 			oninput={(e) => {
 				const v = (e.currentTarget as HTMLTextAreaElement).value;
 				working = { ...working, audience: v };
-			}}
-		></textarea>
+			}}></textarea>
 	</label>
 
 	<label class="block space-y-1">
-		<span class="text-xs font-medium text-[var(--color-text-muted)]"
-			>Learning outcome (one sentence)</span
-		>
+		<span class="text-xs font-medium text-[var(--color-text-muted)]">
+			Learning outcome (one sentence)
+		</span>
 		<input
 			type="text"
 			class="w-full rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)]"

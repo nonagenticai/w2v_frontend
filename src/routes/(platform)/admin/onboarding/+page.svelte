@@ -611,9 +611,9 @@
 									onclick={() => select(row)}
 								>
 									<span class="flex items-center justify-between gap-3">
-										<span class="truncate text-sm font-medium text-[var(--color-text)]"
-											>{row.name}</span
-										>
+										<span class="truncate text-sm font-medium text-[var(--color-text)]">
+											{row.name}
+										</span>
 										<Pill tone={view.tone}>{view.label}</Pill>
 									</span>
 									<span class="truncate text-sm text-[var(--color-text-muted)]">{row.email}</span>
@@ -702,12 +702,12 @@
 							{#if selected.status === 'approved' && selected.tenant_id}
 								<p class="text-sm" data-testid="onboarding-tenant">
 									Workspace:
-									<a class="underline" href={resolve('/tenants')}
-										>{selected.tenant_name || selected.tenant_slug || selected.tenant_id}</a
-									>
+									<a class="underline" href={resolve('/tenants')}>
+										{selected.tenant_name || selected.tenant_slug || selected.tenant_id}
+									</a>
 									{#if selected.tenant_slug}<span class="text-[var(--color-text-muted)]">
-											({selected.tenant_slug})</span
-										>{/if}
+											({selected.tenant_slug})
+										</span>{/if}
 								</p>
 							{/if}
 
@@ -724,15 +724,19 @@
 												{#if s.summary}
 													<span
 														class="break-words text-xs text-[var(--color-text-muted)]"
-														data-testid="onboarding-step-summary">{s.summary}</span
+														data-testid="onboarding-step-summary"
 													>
+														{s.summary}
+													</span>
 													{#if s.error}
 														<details class="text-xs text-[var(--color-text-muted)]">
 															<summary class="cursor-pointer">Technical details</summary>
 															<code
 																class="mt-1 block whitespace-pre-wrap break-words"
-																data-testid="onboarding-step-error">{s.error}</code
+																data-testid="onboarding-step-error"
 															>
+																{s.error}
+															</code>
 														</details>
 													{/if}
 												{/if}
@@ -773,9 +777,9 @@
 											{#each rm.blockers as b (b.code)}
 												<li>
 													{removalCodeMessage(b.code) ?? b.message}
-													<span class="block text-xs text-[var(--color-text-muted)]"
-														>{b.message}</span
-													>
+													<span class="block text-xs text-[var(--color-text-muted)]">
+														{b.message}
+													</span>
 												</li>
 											{/each}
 										</ul>
@@ -788,15 +792,16 @@
 													<Pill tone={s.tone}>{s.statusLabel}</Pill>
 												</span>
 												{#if s.summary}
-													<span class="break-words text-xs text-[var(--color-text-muted)]"
-														>{s.summary}</span
-													>
+													<span class="break-words text-xs text-[var(--color-text-muted)]">
+														{s.summary}
+													</span>
 												{/if}
 												{#if s.error}
 													<details class="text-xs text-[var(--color-text-muted)]">
 														<summary class="cursor-pointer">Technical details</summary>
-														<code class="mt-1 block whitespace-pre-wrap break-words">{s.error}</code
-														>
+														<code class="mt-1 block whitespace-pre-wrap break-words">
+															{s.error}
+														</code>
 													</details>
 												{/if}
 											</li>
@@ -899,14 +904,18 @@
 									<Button
 										variant="secondary"
 										disabled={busy !== null || notConfigured}
-										onclick={() => (confirmRejectOpen = true)}>Decline</Button
+										onclick={() => (confirmRejectOpen = true)}
 									>
+										Decline
+									</Button>
 									<Button
 										variant="primary"
 										loading={busy === 'approve'}
 										disabled={busy !== null || notConfigured || workspaceName.trim().length < 2}
-										onclick={approve}>Approve</Button
+										onclick={approve}
 									>
+										Approve
+									</Button>
 								</div>
 							{:else if canRetry(selected)}
 								<div class="flex justify-end">
@@ -914,8 +923,10 @@
 										variant="primary"
 										loading={busy === 'retry'}
 										disabled={busy !== null || notConfigured}
-										onclick={requestRetry}>Retry setup</Button
+										onclick={requestRetry}
 									>
+										Retry setup
+									</Button>
 								</div>
 							{:else if canRetryRemoval(selected)}
 								<div class="flex justify-end gap-2">
@@ -924,15 +935,19 @@
 											variant="secondary"
 											loading={busy === 'resolve'}
 											disabled={busy !== null || notConfigured}
-											onclick={openResolve}>Close by hand</Button
+											onclick={openResolve}
 										>
+											Close by hand
+										</Button>
 									{/if}
 									<Button
 										variant="primary"
 										loading={busy === 'removal_retry'}
 										disabled={busy !== null || notConfigured}
-										onclick={retryRemoval}>Retry removal</Button
+										onclick={retryRemoval}
 									>
+										Retry removal
+									</Button>
 								</div>
 							{/if}
 							{#if canRemove(selected)}
@@ -949,8 +964,10 @@
 											variant="danger"
 											loading={busy === 'remove'}
 											disabled={busy !== null || notConfigured}
-											onclick={openRemove}>Remove early-access workspace</Button
+											onclick={openRemove}
 										>
+											Remove early-access workspace
+										</Button>
 									</div>
 								</div>
 							{/if}
@@ -985,8 +1002,10 @@
 									type="button"
 									class="underline"
 									data-testid="invite-open-existing"
-									onclick={() => openById(existingId)}>Open their request</button
+									onclick={() => openById(existingId)}
 								>
+									Open their request
+								</button>
 							{/if}
 						</p>
 					{/if}
@@ -1052,8 +1071,9 @@
 				from here — invite them later if you change your mind.
 			</p>
 			<div class="flex justify-end gap-2">
-				<Button variant="ghost" size="sm" onclick={() => (confirmRejectOpen = false)}>Cancel</Button
-				>
+				<Button variant="ghost" size="sm" onclick={() => (confirmRejectOpen = false)}>
+					Cancel
+				</Button>
 				<Button variant="danger" size="sm" onclick={confirmReject}>Decline</Button>
 			</div>
 		</div>
@@ -1137,11 +1157,12 @@
 				</div>
 			{/if}
 			<div class="flex justify-end gap-2">
-				<Button variant="ghost" size="sm" onclick={() => (confirmRemoveOpen = false)}>Cancel</Button
-				>
-				<Button type="submit" variant="danger" size="sm" disabled={!removeReady}
-					>Remove workspace</Button
-				>
+				<Button variant="ghost" size="sm" onclick={() => (confirmRemoveOpen = false)}>
+					Cancel
+				</Button>
+				<Button type="submit" variant="danger" size="sm" disabled={!removeReady}>
+					Remove workspace
+				</Button>
 			</div>
 		</form>
 	{/if}
@@ -1177,15 +1198,17 @@
 				<span>I understand the workspace, its licences or the login may still work.</span>
 			</label>
 			<div class="flex justify-end gap-2">
-				<Button variant="ghost" size="sm" onclick={() => (confirmResolveOpen = false)}
-					>Cancel</Button
-				>
+				<Button variant="ghost" size="sm" onclick={() => (confirmResolveOpen = false)}>
+					Cancel
+				</Button>
 				<Button
 					type="submit"
 					variant="danger"
 					size="sm"
-					disabled={!resolveAck || resolveNote.trim().length < 3}>Close the removal</Button
+					disabled={!resolveAck || resolveNote.trim().length < 3}
 				>
+					Close the removal
+				</Button>
 			</div>
 		</form>
 	{/if}

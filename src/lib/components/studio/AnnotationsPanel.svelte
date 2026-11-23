@@ -202,8 +202,7 @@
 					? `Note pinned to ${pinLabel}`
 					: 'Stage-level note (applies to the whole stage)'}
 				disabled={adding}
-				spellcheck
-			></textarea>
+				spellcheck></textarea>
 			{#if addError}
 				<p class="text-[11px] text-status-failed">{addError}</p>
 			{/if}

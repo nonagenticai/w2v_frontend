@@ -185,9 +185,9 @@
 						<div class="min-w-0">
 							<p class="flex items-center gap-2 text-sm font-medium text-[var(--color-text)]">
 								<Pill tone={toneFor(entry.action)}>{auditActionLabel(entry.action)}</Pill>
-								<span class="font-mono text-xs text-[var(--color-text-muted)]"
-									>{shortId(entry.actor_subject_id, 'system')}</span
-								>
+								<span class="font-mono text-xs text-[var(--color-text-muted)]">
+									{shortId(entry.actor_subject_id, 'system')}
+								</span>
 							</p>
 							<p class="mt-1 truncate text-xs text-[var(--color-text-muted)]">
 								{summarize(entry)}

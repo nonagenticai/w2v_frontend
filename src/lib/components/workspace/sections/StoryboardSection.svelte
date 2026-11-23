@@ -315,9 +315,9 @@
 			</div>
 			{#if confirmReplace}
 				<div class="flex items-center gap-2" data-testid="draft-confirm">
-					<span class="text-sm text-[var(--color-text-muted)]"
-						>A storyboard already exists — replace it?</span
-					>
+					<span class="text-sm text-[var(--color-text-muted)]">
+						A storyboard already exists — replace it?
+					</span>
 					<button
 						type="button"
 						class="inline-flex items-center rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-danger)] px-3 py-1.5 text-sm font-medium text-[var(--color-bg)] transition-colors disabled:opacity-40"

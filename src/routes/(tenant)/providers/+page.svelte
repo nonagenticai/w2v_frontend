@@ -158,8 +158,8 @@
 					data-mode={banner.mode}
 				>
 					<p class="font-semibold">
-						<span class="text-xs font-medium text-[var(--color-text-muted)]"
-							>Service access ·
+						<span class="text-xs font-medium text-[var(--color-text-muted)]">
+							Service access ·
 						</span>{banner.title}
 					</p>
 					<p class="mt-1 text-[var(--color-text-muted)]">{banner.body}</p>
@@ -201,8 +201,9 @@
 						data-testid="providers-gateway-hint"
 					>
 						Each service lists the API shape it expects. A provider can be your own endpoint or the
-						platform gateway, <code class="break-all">{PLATFORM_GATEWAY_BASE}/&lt;service&gt;</code
-						>, with your licence token as the key.
+						platform gateway, <code class="break-all">
+							{PLATFORM_GATEWAY_BASE}/&lt;service&gt;
+						</code>, with your licence token as the key.
 					</p>
 				</div>
 				{#if canWrite && summary.length > 0}
@@ -226,18 +227,22 @@
 										<td class="px-3 py-2 break-words">
 											<a
 												class="underline-offset-2 hover:underline"
-												href="#{providerSlotAnchor(row.slot)}">{row.label}</a
+												href="#{providerSlotAnchor(row.slot)}"
 											>
+												{row.label}
+											</a>
 										</td>
 										<td
 											class="px-3 py-2 break-words {row.source === 'required'
 												? 'text-xs font-medium text-[var(--color-danger)]'
 												: ''}"
-											data-testid="providers-summary-source">{row.sourceLabel}</td
+											data-testid="providers-summary-source"
 										>
-										<td class="px-3 py-2 break-all" data-testid="providers-summary-model"
-											>{row.model}</td
-										>
+											{row.sourceLabel}
+										</td>
+										<td class="px-3 py-2 break-all" data-testid="providers-summary-model">
+											{row.model}
+										</td>
 										<td class="px-3 py-2" data-testid="providers-summary-key">{row.key}</td>
 									</tr>
 								{/each}

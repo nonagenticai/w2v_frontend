@@ -553,8 +553,10 @@ The right-rail Notes tab. Lists annotations grouped by status (open / applied / 
 		{#each ['open', 'applied', 'dismissed'] as b (b)}
 			<button
 				class="rounded px-2 py-0.5 {bucket === b ? 'bg-primary text-primary-fg' : 'bg-surface-2'}"
-				onclick={() => (bucket = b as 'open' | 'applied' | 'dismissed')}>{b}</button
+				onclick={() => (bucket = b as 'open' | 'applied' | 'dismissed')}
 			>
+				{b}
+			</button>
 		{/each}
 	</div>
 
@@ -1036,8 +1038,9 @@ export function wordDiff(left: string, right: string) {
 
 	{#if parts}
 		<p>
-			{#each parts as p}<span class:added={p.added} class:removed={p.removed}>{p.value}</span
-				>{/each}
+			{#each parts as p}<span class:added={p.added} class:removed={p.removed}>
+					{p.value}
+				</span>{/each}
 		</p>
 	{:else if change.kind === 'modified'}
 		<div class="grid grid-cols-2 gap-2 text-xs">

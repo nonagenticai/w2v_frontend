@@ -57,8 +57,10 @@
 					href={safeHref(url)}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="text-sm text-[var(--color-accent)] hover:underline break-all">{url}</a
+					class="text-sm text-[var(--color-accent)] hover:underline break-all"
 				>
+					{url}
+				</a>
 			{/if}
 			{#if summary}<Markdown text={summary} />{/if}
 		</div>
@@ -69,18 +71,18 @@
 			{#each categories as [name, score] (name)}
 				{@const v = num(score) ?? 0}
 				<div class="grid grid-cols-[140px_1fr_auto] items-center gap-2 text-sm">
-					<span class="text-[var(--color-text-muted)] truncate capitalize"
-						>{name.replace(/_/g, ' ')}</span
-					>
+					<span class="text-[var(--color-text-muted)] truncate capitalize">
+						{name.replace(/_/g, ' ')}
+					</span>
 					<span class="h-2 rounded-full bg-[var(--color-surface-strong)] overflow-hidden">
 						<span
 							class="block h-full rounded-full"
 							style={`width:${Math.round(v * 100)}%;background:${barTone(v)}`}
 						></span>
 					</span>
-					<span class="tabular-nums text-[var(--color-text-muted)] text-xs"
-						>{Math.round(v * 100)}</span
-					>
+					<span class="tabular-nums text-[var(--color-text-muted)] text-xs">
+						{Math.round(v * 100)}
+					</span>
 				</div>
 			{/each}
 		</div>
@@ -98,8 +100,9 @@
 						</p>
 						<span class="flex shrink-0 items-center gap-1.5">
 							{#if str(f.category)}<Pill tone="neutral">{f.category}</Pill>{/if}
-							{#if str(f.severity)}<Pill tone={severityTone(str(f.severity))}>{f.severity}</Pill
-								>{/if}
+							{#if str(f.severity)}<Pill tone={severityTone(str(f.severity))}>
+									{f.severity}
+								</Pill>{/if}
 						</span>
 					</div>
 					{#if str(f.description)}<p class="text-sm text-[var(--color-text-muted)]">

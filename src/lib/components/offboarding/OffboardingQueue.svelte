@@ -244,10 +244,9 @@
 							<div class="min-w-0 text-sm text-[var(--color-text)]">
 								<span class="font-medium">{job.kind === 'export' ? 'Export' : 'Delete'}</span>
 								<span class="ml-1">{label(job)}</span>
-								<span class="ml-1"
-									><Pill tone={statusTone(job.status)}>{OFFBOARDING_STATUS_LABEL[job.status]}</Pill
-									></span
-								>
+								<span class="ml-1">
+									<Pill tone={statusTone(job.status)}>{OFFBOARDING_STATUS_LABEL[job.status]}</Pill>
+								</span>
 								{#if job.force}<span class="ml-1"><Pill tone="danger">forced</Pill></span>{/if}
 								<p class="mt-0.5 text-xs text-[var(--color-text-muted)]">
 									{formatDateTime(job.created_at)}{#if job.reason}
@@ -260,18 +259,20 @@
 										variant="primary"
 										size="sm"
 										loading={busyId === job.id}
-										onclick={() => approveExport(job)}>Approve export</Button
+										onclick={() => approveExport(job)}
 									>
+										Approve export
+									</Button>
 								{/if}
 								{#if job.status === 'requested' && job.kind === 'delete'}
-									<Button variant="danger" size="sm" onclick={() => openDelete(job)}
-										>Review &amp; delete…</Button
-									>
+									<Button variant="danger" size="sm" onclick={() => openDelete(job)}>
+										Review &amp; delete…
+									</Button>
 								{/if}
 								{#if job.status === 'failed' && job.kind === 'delete'}
-									<Button variant="danger" size="sm" onclick={() => openDelete(job)}
-										>Resume delete…</Button
-									>
+									<Button variant="danger" size="sm" onclick={() => openDelete(job)}>
+										Resume delete…
+									</Button>
 								{/if}
 								{#if job.status === 'requested'}
 									<Button variant="ghost" size="sm" onclick={() => openReject(job)}>Reject</Button>
@@ -281,8 +282,10 @@
 										variant="secondary"
 										size="sm"
 										loading={busyId === job.id}
-										onclick={() => download(job)}>Download</Button
+										onclick={() => download(job)}
 									>
+										Download
+									</Button>
 								{/if}
 							</div>
 						</div>
@@ -330,8 +333,10 @@
 					size="sm"
 					loading={rejecting}
 					disabled={rejectReason.trim().length > 1000}
-					onclick={confirmReject}>Reject</Button
+					onclick={confirmReject}
 				>
+					Reject
+				</Button>
 			</div>
 		</div>
 	{/if}

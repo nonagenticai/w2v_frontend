@@ -224,13 +224,13 @@
 					<li class="flex items-center justify-between px-5 py-3" data-testid="usage-by-type-row">
 						<div>
 							<span class="text-sm font-medium text-[var(--color-text)]">{row.type}</span>
-							<span class="ml-2 text-xs text-[var(--color-text-muted)]"
-								>{num(row.run_count)} runs</span
-							>
+							<span class="ml-2 text-xs text-[var(--color-text-muted)]">
+								{num(row.run_count)} runs
+							</span>
 						</div>
-						<span class="font-mono text-sm tabular-nums text-[var(--color-text)]"
-							>{cost(row.cost_usd)}</span
-						>
+						<span class="font-mono text-sm tabular-nums text-[var(--color-text)]">
+							{cost(row.cost_usd)}
+						</span>
 					</li>
 				{/each}
 			</ul>
@@ -247,13 +247,13 @@
 					<li class="flex items-center justify-between px-5 py-3" data-testid="usage-by-stage-row">
 						<div>
 							<span class="text-sm font-medium text-[var(--color-text)]">{row.stage_name}</span>
-							<span class="ml-2 text-xs text-[var(--color-text-muted)]"
-								>{num(row.call_count)} calls · {num(row.input_tokens)}→{num(row.output_tokens)} tok</span
-							>
+							<span class="ml-2 text-xs text-[var(--color-text-muted)]">
+								{num(row.call_count)} calls · {num(row.input_tokens)}→{num(row.output_tokens)} tok
+							</span>
 						</div>
-						<span class="font-mono text-sm tabular-nums text-[var(--color-text)]"
-							>{cost(row.cost_usd)}</span
-						>
+						<span class="font-mono text-sm tabular-nums text-[var(--color-text)]">
+							{cost(row.cost_usd)}
+						</span>
 					</li>
 				{/each}
 			</ul>
@@ -273,13 +273,13 @@
 							{#if row.provider}
 								<span class="ml-2 text-xs text-[var(--color-text-muted)]">{row.provider}</span>
 							{/if}
-							<span class="ml-2 text-xs text-[var(--color-text-muted)]"
-								>{num(row.call_count)} calls</span
-							>
+							<span class="ml-2 text-xs text-[var(--color-text-muted)]">
+								{num(row.call_count)} calls
+							</span>
 						</div>
-						<span class="font-mono text-sm tabular-nums text-[var(--color-text)]"
-							>{cost(row.cost_usd)}</span
-						>
+						<span class="font-mono text-sm tabular-nums text-[var(--color-text)]">
+							{cost(row.cost_usd)}
+						</span>
 					</li>
 				{/each}
 			</ul>
@@ -307,19 +307,19 @@
 								{#if row.member_status === 'removed'}
 									<span class="ml-2 text-xs text-[var(--color-text-muted)]">(removed member)</span>
 								{:else if !row.subject_id}
-									<span class="ml-2 text-xs text-[var(--color-text-muted)]"
-										>(usage recorded before per-user attribution)</span
-									>
+									<span class="ml-2 text-xs text-[var(--color-text-muted)]">
+										(usage recorded before per-user attribution)
+									</span>
 								{:else if row.member_status == null}
 									<span class="ml-2 text-xs text-[var(--color-text-muted)]">(not a member)</span>
 								{/if}
-								<span class="ml-2 text-xs text-[var(--color-text-muted)]"
-									>{num(row.call_count)} calls · {num(row.input_tokens)}→{num(row.output_tokens)} tok</span
-								>
+								<span class="ml-2 text-xs text-[var(--color-text-muted)]">
+									{num(row.call_count)} calls · {num(row.input_tokens)}→{num(row.output_tokens)} tok
+								</span>
 							</div>
-							<span class="font-mono text-sm tabular-nums text-[var(--color-text)]"
-								>{cost(row.cost_usd)}</span
-							>
+							<span class="font-mono text-sm tabular-nums text-[var(--color-text)]">
+								{cost(row.cost_usd)}
+							</span>
 						</li>
 					{/each}
 				</ul>
@@ -345,17 +345,17 @@
 						<li class="flex items-center justify-between px-5 py-3" data-testid="usage-by-slot-row">
 							<div>
 								<span class="text-sm font-medium text-[var(--color-text)]">{row.slot}</span>
-								<span class="ml-2 text-xs text-[var(--color-text-muted)]"
-									>{FUNDING_LABELS[row.funding] ?? row.funding}</span
-								>
-								<span class="ml-2 text-xs text-[var(--color-text-muted)]"
-									>{num(row.call_count)} calls{#if unitsText(row.units)}
-										· {unitsText(row.units)}{/if}</span
-								>
+								<span class="ml-2 text-xs text-[var(--color-text-muted)]">
+									{FUNDING_LABELS[row.funding] ?? row.funding}
+								</span>
+								<span class="ml-2 text-xs text-[var(--color-text-muted)]">
+									{num(row.call_count)} calls{#if unitsText(row.units)}
+										· {unitsText(row.units)}{/if}
+								</span>
 							</div>
-							<span class="font-mono text-sm tabular-nums text-[var(--color-text)]"
-								>{cost(row.cost_usd)}</span
-							>
+							<span class="font-mono text-sm tabular-nums text-[var(--color-text)]">
+								{cost(row.cost_usd)}
+							</span>
 						</li>
 					{/each}
 				</ul>

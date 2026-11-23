@@ -111,9 +111,9 @@
 				>
 					<div class="min-w-0">
 						<div class="flex items-center gap-2">
-							<span class="text-sm font-semibold text-[var(--color-text)] truncate"
-								>{deliverable.name}</span
-							>
+							<span class="text-sm font-semibold text-[var(--color-text)] truncate">
+								{deliverable.name}
+							</span>
 							<Pill tone="success">completed</Pill>
 						</div>
 						<p class="text-xs text-[var(--color-text-muted)] mt-1">

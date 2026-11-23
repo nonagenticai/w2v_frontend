@@ -76,9 +76,9 @@
 				<span class="text-sm text-[var(--color-text-muted)]">Uploading…</span>
 			{:else if brief.package_url}
 				<FileCheck class="h-5 w-5 text-[var(--color-success)]" />
-				<span class="text-sm text-[var(--color-text)]" data-testid="package-name"
-					>{packageName || 'Recording package uploaded'}</span
-				>
+				<span class="text-sm text-[var(--color-text)]" data-testid="package-name">
+					{packageName || 'Recording package uploaded'}
+				</span>
 				<span class="ml-auto text-xs text-[var(--color-text-muted)]">Replace</span>
 			{:else}
 				<Upload class="h-5 w-5 text-[var(--color-text-muted)]" />

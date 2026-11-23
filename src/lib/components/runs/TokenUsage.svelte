@@ -32,9 +32,9 @@
 		<p
 			title={`${formatTokenCountFull(summary.input)} input + ${formatTokenCountFull(summary.output)} output = ${formatTokenCountFull(summary.total)} tokens`}
 		>
-			<span data-testid="{testid}-total" class="font-medium text-[var(--color-text)]"
-				>{formatTokenCount(summary.total)} tokens</span
-			>
+			<span data-testid="{testid}-total" class="font-medium text-[var(--color-text)]">
+				{formatTokenCount(summary.total)} tokens
+			</span>
 			<span aria-hidden="true"> · </span>
 			<span data-testid="{testid}-input">{formatTokenCount(summary.input)} in</span>
 			<span aria-hidden="true"> / </span>

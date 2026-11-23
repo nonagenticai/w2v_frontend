@@ -283,9 +283,9 @@
 	<PanelVisualPicker {panel} {disabled} />
 
 	<div class="flex flex-col gap-1.5">
-		<label for={`action-${uid}`} class="text-sm font-medium text-[var(--color-text-muted)]"
-			>Action</label
-		>
+		<label for={`action-${uid}`} class="text-sm font-medium text-[var(--color-text-muted)]">
+			Action
+		</label>
 		<textarea
 			id={`action-${uid}`}
 			name={`action-${uid}`}
@@ -293,15 +293,14 @@
 			{disabled}
 			class={textareaClass}
 			value={panel.action_description ?? ''}
-			oninput={(e) => onText('action_description', e)}
-		></textarea>
+			oninput={(e) => onText('action_description', e)}></textarea>
 	</div>
 
 	<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
 		<div class="flex flex-col gap-1.5">
-			<label for={`dialogue-${uid}`} class="text-sm font-medium text-[var(--color-text-muted)]"
-				>Dialogue</label
-			>
+			<label for={`dialogue-${uid}`} class="text-sm font-medium text-[var(--color-text-muted)]">
+				Dialogue
+			</label>
 			<textarea
 				id={`dialogue-${uid}`}
 				name={`dialogue-${uid}`}
@@ -309,13 +308,12 @@
 				{disabled}
 				class={textareaClass}
 				value={panel.dialogue ?? ''}
-				oninput={(e) => onText('dialogue', e)}
-			></textarea>
+				oninput={(e) => onText('dialogue', e)}></textarea>
 		</div>
 		<div class="flex flex-col gap-1.5">
-			<label for={`vo-${uid}`} class="text-sm font-medium text-[var(--color-text-muted)]"
-				>Voice-over</label
-			>
+			<label for={`vo-${uid}`} class="text-sm font-medium text-[var(--color-text-muted)]">
+				Voice-over
+			</label>
 			<textarea
 				id={`vo-${uid}`}
 				name={`vo-${uid}`}
@@ -323,8 +321,7 @@
 				{disabled}
 				class={textareaClass}
 				value={panel.vo_text ?? ''}
-				oninput={(e) => onText('vo_text', e)}
-			></textarea>
+				oninput={(e) => onText('vo_text', e)}></textarea>
 		</div>
 	</div>
 

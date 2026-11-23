@@ -184,8 +184,10 @@
 	<div class="flex flex-col gap-1.5">
 		<label
 			for={`asset-descriptor-${uid}`}
-			class="text-sm font-medium text-[var(--color-text-muted)]">Canonical descriptor</label
+			class="text-sm font-medium text-[var(--color-text-muted)]"
 		>
+			Canonical descriptor
+		</label>
 		<textarea
 			id={`asset-descriptor-${uid}`}
 			name={`asset-descriptor-${uid}`}
@@ -193,8 +195,7 @@
 			disabled={saving}
 			class={textareaClass}
 			placeholder="Identity and style prompt used to keep this asset consistent across shots."
-			bind:value={descriptor}
-		></textarea>
+			bind:value={descriptor}></textarea>
 	</div>
 
 	<!-- Reference images. Deliberately labelled "reference" and not "style

@@ -197,12 +197,12 @@
 				<dt class="text-xs text-[var(--color-text-muted)]">Deliverables</dt>
 				<dd class="text-[var(--color-text)]">
 					{#each cw.deliverables as d, i (i)}
-						<span class="inline-block mr-2"
-							>{d.name || `Deliverable ${i + 1}`} ({DELIVERABLE_FORMAT_LABELS[d.format]}{cw.controls
+						<span class="inline-block mr-2">
+							{d.name || `Deliverable ${i + 1}`} ({DELIVERABLE_FORMAT_LABELS[d.format]}{cw.controls
 								.deliverableDuration && d.target_duration_seconds
 								? ` · ${d.target_duration_seconds}s`
-								: ''})</span
-						>
+								: ''})
+						</span>
 					{/each}
 				</dd>
 			</div>

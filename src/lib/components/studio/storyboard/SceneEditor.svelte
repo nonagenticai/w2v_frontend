@@ -113,8 +113,10 @@
 	<div class="flex flex-col gap-1.5">
 		<label
 			for={`scene-description-${uid}`}
-			class="text-sm font-medium text-[var(--color-text-muted)]">Description</label
+			class="text-sm font-medium text-[var(--color-text-muted)]"
 		>
+			Description
+		</label>
 		<textarea
 			id={`scene-description-${uid}`}
 			name={`scene-description-${uid}`}
@@ -122,8 +124,7 @@
 			disabled={saving}
 			class={textareaClass}
 			placeholder="What happens in this scene."
-			bind:value={description}
-		></textarea>
+			bind:value={description}></textarea>
 	</div>
 
 	<div class="flex items-center justify-end gap-2">

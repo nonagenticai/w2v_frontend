@@ -145,14 +145,18 @@
 				variant="secondary"
 				size="sm"
 				disabled={loading || isOpen('export')}
-				onclick={() => openRequest('export')}>Request export</Button
+				onclick={() => openRequest('export')}
 			>
+				Request export
+			</Button>
 			<Button
 				variant="danger"
 				size="sm"
 				disabled={loading || isOpen('delete')}
-				onclick={() => openRequest('delete')}>Request deletion</Button
+				onclick={() => openRequest('delete')}
 			>
+				Request deletion
+			</Button>
 		</div>
 
 		<div class="mt-4">
@@ -179,17 +183,19 @@
 								<div class="flex items-center gap-2 text-sm text-[var(--color-text)]">
 									<span class="font-medium">{job.kind === 'export' ? 'Export' : 'Deletion'}</span>
 									<Pill tone={statusTone(job.status)}>{OFFBOARDING_STATUS_LABEL[job.status]}</Pill>
-									<span class="text-xs text-[var(--color-text-muted)]"
-										>requested {formatDateTime(job.created_at)}</span
-									>
+									<span class="text-xs text-[var(--color-text-muted)]">
+										requested {formatDateTime(job.created_at)}
+									</span>
 								</div>
 								{#if job.download_url}
 									<Button
 										variant="secondary"
 										size="sm"
 										loading={downloadingId === job.id}
-										onclick={() => download(job)}>Download export</Button
+										onclick={() => download(job)}
 									>
+										Download export
+									</Button>
 								{/if}
 							</div>
 							{#if job.reason}
@@ -261,8 +267,9 @@
 					loading={submitting}
 					disabled={reason.trim().length > 1000}
 					onclick={submitRequest}
-					>{requestKind === 'delete' ? 'Request deletion' : 'Request export'}</Button
 				>
+					{requestKind === 'delete' ? 'Request deletion' : 'Request export'}
+				</Button>
 			</div>
 		</div>
 	{/if}

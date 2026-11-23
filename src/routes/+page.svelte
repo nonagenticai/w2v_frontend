@@ -105,8 +105,9 @@
 									<span class="font-semibold">2.</span>
 									{#if isTenantAdmin()}
 										If your workspace brings its own AI providers, connect them in
-										<a class="underline hover:opacity-80" href={resolve('/providers')}>Providers</a
-										>.
+										<a class="underline hover:opacity-80" href={resolve('/providers')}>
+											Providers
+										</a>.
 									{:else}
 										If your workspace brings its own AI providers, ask a workspace admin to connect
 										them.

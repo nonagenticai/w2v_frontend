@@ -47,17 +47,17 @@
 				data-line-id={str(clip.line_id) ?? undefined}
 			>
 				<div class="flex items-center justify-between gap-2 mb-1">
-					<span class="text-xs font-medium text-[var(--color-text)] tabular-nums"
-						>{label(clip, i)}</span
-					>
+					<span class="text-xs font-medium text-[var(--color-text)] tabular-nums">
+						{label(clip, i)}
+					</span>
 					<span class="flex items-center gap-1.5">
 						{#if str(clip.voice_id)}<Pill tone="neutral">{clip.voice_id}</Pill>{/if}
-						{#if str(clip.speaker)}<span class="text-xs text-[var(--color-text-muted)]"
-								>{clip.speaker}</span
-							>{/if}
-						{#if num(clip.speed)}<span class="text-xs text-[var(--color-text-muted)]"
-								>{clip.speed}×</span
-							>{/if}
+						{#if str(clip.speaker)}<span class="text-xs text-[var(--color-text-muted)]">
+								{clip.speaker}
+							</span>{/if}
+						{#if num(clip.speed)}<span class="text-xs text-[var(--color-text-muted)]">
+								{clip.speed}×
+							</span>{/if}
 						{#if num(clip.seconds)}<Duration seconds={num(clip.seconds)} class="text-xs" />{/if}
 					</span>
 				</div>

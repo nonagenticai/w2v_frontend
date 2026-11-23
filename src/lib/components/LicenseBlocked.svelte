@@ -88,9 +88,9 @@
 
 		<p class="mt-6 text-xs text-[var(--color-text-muted)]">
 			Need help? Contact
-			<a class="text-[var(--color-accent)] underline" href="mailto:sales@nonagentic.ai"
-				>sales@nonagentic.ai</a
-			>.
+			<a class="text-[var(--color-accent)] underline" href="mailto:sales@nonagentic.ai">
+				sales@nonagentic.ai
+			</a>.
 		</p>
 	</div>
 </div>

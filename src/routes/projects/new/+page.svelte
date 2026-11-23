@@ -326,8 +326,9 @@
 				{/if}
 
 				{#if cw.currentStep !== 'review'}
-					<Button variant="primary" disabled={!cw.canProceed} onclick={() => cw.next()}>Next</Button
-					>
+					<Button variant="primary" disabled={!cw.canProceed} onclick={() => cw.next()}>
+						Next
+					</Button>
 				{:else}
 					<div class="flex items-center gap-2">
 						<Button

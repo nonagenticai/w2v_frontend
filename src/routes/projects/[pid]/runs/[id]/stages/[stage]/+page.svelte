@@ -548,8 +548,7 @@
 							bind:value={restampValueJson}
 							rows="6"
 							class="w-full rounded border border-border/60 bg-background px-2 py-1 font-mono text-xs"
-							placeholder={'{\n  "text": "..."\n}'}
-						></textarea>
+							placeholder={'{\n  "text": "..."\n}'}></textarea>
 					</div>
 					<label class="flex items-start gap-2 text-xs text-text-muted">
 						<input

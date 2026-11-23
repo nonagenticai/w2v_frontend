@@ -83,15 +83,15 @@
 			</div>
 			<div class="flex flex-wrap items-center gap-1.5">
 				<Pill tone="accent">{summary.count} lines</Pill>
-				{#if summary.totalSeconds > 0}<Pill tone="neutral"
-						><Duration seconds={summary.totalSeconds} /></Pill
-					>{/if}
-				<Pill tone={summary.withAudio === summary.count ? 'success' : 'neutral'}
-					>{summary.withAudio}/{summary.count} voiced</Pill
-				>
-				<Pill tone={summary.withVisual === summary.count ? 'success' : 'neutral'}
-					>{summary.withVisual}/{summary.count} visuals</Pill
-				>
+				{#if summary.totalSeconds > 0}<Pill tone="neutral">
+						<Duration seconds={summary.totalSeconds} />
+					</Pill>{/if}
+				<Pill tone={summary.withAudio === summary.count ? 'success' : 'neutral'}>
+					{summary.withAudio}/{summary.count} voiced
+				</Pill>
+				<Pill tone={summary.withVisual === summary.count ? 'success' : 'neutral'}>
+					{summary.withVisual}/{summary.count} visuals
+				</Pill>
 			</div>
 		</div>
 
@@ -134,9 +134,9 @@
 									<span
 										class="absolute inset-0 flex items-center justify-center bg-black/15 group-hover:bg-black/25"
 									>
-										<span class="rounded-full bg-black/55 p-1.5 text-white"
-											><Play class="h-4 w-4" /></span
-										>
+										<span class="rounded-full bg-black/55 p-1.5 text-white">
+											<Play class="h-4 w-4" />
+										</span>
 									</span>
 								{/if}
 							</button>
@@ -153,15 +153,16 @@
 					<div class="min-w-0 space-y-1.5">
 						<div class="flex flex-wrap items-center gap-2 text-[var(--color-text-muted)]">
 							<span class="text-[10px] uppercase tracking-wide tabular-nums">Line {i + 1}</span>
-							{#if line.speaker}<Pill tone="neutral">Speaker {line.speaker.toUpperCase()}</Pill
-								>{/if}
+							{#if line.speaker}<Pill tone="neutral">
+									Speaker {line.speaker.toUpperCase()}
+								</Pill>{/if}
 							{#if line.seconds != null}<Duration seconds={line.seconds} class="text-[10px]" />{/if}
 							{#if line.previewSource}
 								<span class="text-[10px]">{line.previewSource}</span>
 							{:else if line.visualType}
-								<span class="inline-flex items-center gap-1 text-[10px]"
-									><Icon class="h-3 w-3" />{line.visualType}</span
-								>
+								<span class="inline-flex items-center gap-1 text-[10px]">
+									<Icon class="h-3 w-3" />{line.visualType}
+								</span>
 							{/if}
 						</div>
 						{#if line.text}

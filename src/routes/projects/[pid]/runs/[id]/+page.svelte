@@ -1276,9 +1276,9 @@
 				<p class="text-kicker text-[var(--color-text-muted)] flex items-center gap-1.5">
 					<a href={resolve('/projects')} class="hover:text-[var(--color-text)]">Projects</a>
 					<ChevronRight class="h-3 w-3" />
-					<a href={resolve(`/projects/${projectId}`)} class="hover:text-[var(--color-text)]"
-						>{projectTitle}</a
-					>
+					<a href={resolve(`/projects/${projectId}`)} class="hover:text-[var(--color-text)]">
+						{projectTitle}
+					</a>
 					<ChevronRight class="h-3 w-3" />
 					<span>Run {jobIdShort}</span>
 				</p>
@@ -1398,9 +1398,11 @@
 				there, or edit the
 				<a
 					href={resolve(`/projects/${projectId}`)}
-					class="text-[var(--color-accent)] hover:underline">project settings</a
-				>. When you {restartLabel(jobProgress.jobStatus).toLowerCase()}, finished steps your changes
-				don't affect are kept.
+					class="text-[var(--color-accent)] hover:underline"
+				>
+					project settings
+				</a>. When you {restartLabel(jobProgress.jobStatus).toLowerCase()}, finished steps your
+				changes don't affect are kept.
 			</p>
 		{/if}
 
@@ -1584,8 +1586,10 @@
 						<a
 							href={resolve('/providers')}
 							class="font-semibold underline"
-							data-testid="upstream-auth-providers-link">Open provider settings</a
+							data-testid="upstream-auth-providers-link"
 						>
+							Open provider settings
+						</a>
 					{:else}
 						Ask a workspace admin to fix the key on the Providers page.
 					{/if}
@@ -1596,14 +1600,18 @@
 					<a
 						href={resolve(`/projects/${projectId}?section=brief`)}
 						class="font-semibold underline"
-						data-testid="site-login-brief-link">Check the sign-in on the Brief page</a
+						data-testid="site-login-brief-link"
 					>
+						Check the sign-in on the Brief page
+					</a>
 					{#if failedStage}
 						<a
 							href={resolve(`/projects/${projectId}/runs/${data.run.id}/stages/${failedStage}`)}
 							class="font-semibold underline"
-							data-testid="site-login-rerun-link">Rerun this step</a
+							data-testid="site-login-rerun-link"
 						>
+							Rerun this step
+						</a>
 					{/if}
 				</p>
 			{/if}
@@ -1685,9 +1693,9 @@
 				class="h-4 w-4 transition-transform {logsPanelOpen ? '' : '-rotate-90'}"
 			/>
 			Activity Log
-			<span class="text-xs text-[var(--color-text-muted)] font-normal"
-				>({plural(logStrings.length, 'entry', 'entries')})</span
-			>
+			<span class="text-xs text-[var(--color-text-muted)] font-normal">
+				({plural(logStrings.length, 'entry', 'entries')})
+			</span>
 		</button>
 		{#if logsPanelOpen}
 			<LogStream
