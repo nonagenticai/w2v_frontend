@@ -8,6 +8,11 @@ updates:
       bun:
         patterns: ['*']
         update-types: ['minor', 'patch']
+    ignore:
+      # adapter-node 6 peer-requires @sveltejs/kit ^3.0.0-next.0; this repo is on
+      # kit 2. Revisit when the SvelteKit 3 migration lands.
+      - dependency-name: '@sveltejs/adapter-node'
+        update-types: ['version-update:semver-major']
   - package-ecosystem: github-actions
     directory: /
     schedule: { interval: weekly, day: monday }
