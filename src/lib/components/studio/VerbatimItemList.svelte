@@ -348,8 +348,7 @@
 										data-testid="verbatim-item-text-input"
 										bind:value={draftText}
 										onkeydown={(e) => onEditKeydown(e, item)}
-										disabled={savingId === item.id}
-									></textarea>
+										disabled={savingId === item.id}></textarea>
 									{#if item.status === 'placed'}
 										<p class="text-[11px] text-[var(--color-text-muted)]">
 											Already placed by a run — editing changes future runs only.
@@ -371,16 +370,20 @@
 												variant="secondary"
 												size="sm"
 												onclick={cancelEdit}
-												disabled={savingId === item.id}>Cancel</Button
+												disabled={savingId === item.id}
 											>
+												Cancel
+											</Button>
 										</span>
 										<span class="inline-flex" data-testid="verbatim-item-save-btn">
 											<Button
 												variant="primary"
 												size="sm"
 												loading={savingId === item.id}
-												onclick={() => saveEdit(item)}>Save</Button
+												onclick={() => saveEdit(item)}
 											>
+												Save
+											</Button>
 										</span>
 									</div>
 								</div>
@@ -513,8 +516,7 @@
 						class="w-full rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-2.5 text-sm text-[var(--color-text)] font-mono focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-[var(--color-accent)] min-h-[5rem]"
 						placeholder="The exact text the pipeline must surface verbatim."
 						bind:value={formText}
-						disabled={submitting}
-					></textarea>
+						disabled={submitting}></textarea>
 				</label>
 				<Input
 					name="verbatim-hint"
@@ -541,8 +543,10 @@
 							resetForm();
 							formOpen = false;
 						}}
-						disabled={submitting}>Cancel</Button
+						disabled={submitting}
 					>
+						Cancel
+					</Button>
 					<Button variant="primary" size="sm" loading={submitting} onclick={submit}>
 						<Plus class="h-3.5 w-3.5" />
 						Add

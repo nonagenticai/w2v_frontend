@@ -179,9 +179,9 @@
 			<p>
 				<strong>{plan?.tenant_name ?? tenantLabel ?? tenantId}</strong>
 				<span class="ml-1 font-mono text-xs text-[var(--color-text-muted)]">{tenantId}</span>
-				{#if plan}<span class="ml-1 text-xs text-[var(--color-text-muted)]"
-						>· status {plan.tenant_status}</span
-					>{/if}
+				{#if plan}<span class="ml-1 text-xs text-[var(--color-text-muted)]">
+						· status {plan.tenant_status}
+					</span>{/if}
 			</p>
 
 			{#if loadingPlan}
@@ -255,8 +255,8 @@
 								<li>
 									<span class="font-mono">{d.service}</span>{#if d.data && d.data.length > 0}
 										<span class="text-xs text-[var(--color-text-muted)]">
-											— {d.data.join(', ')}</span
-										>
+											— {d.data.join(', ')}
+										</span>
 									{/if}
 								</li>
 							{/each}
@@ -306,17 +306,19 @@
 			{/if}
 
 			<div class="flex justify-end gap-2">
-				<Button variant="ghost" size="sm" onclick={() => (open = false)}
-					>{current ? 'Close' : 'Cancel'}</Button
-				>
+				<Button variant="ghost" size="sm" onclick={() => (open = false)}>
+					{current ? 'Close' : 'Cancel'}
+				</Button>
 				{#if !current}
 					<Button
 						variant="danger"
 						size="sm"
 						loading={deleting}
 						disabled={!canDelete}
-						onclick={runDelete}>Delete tenant permanently</Button
+						onclick={runDelete}
 					>
+						Delete tenant permanently
+					</Button>
 				{/if}
 			</div>
 		</div>

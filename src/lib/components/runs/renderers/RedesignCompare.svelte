@@ -153,24 +153,30 @@
 					href={safeHref(liveUrl)}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="text-sm text-[var(--color-accent)] hover:underline">Open ↗</a
+					class="text-sm text-[var(--color-accent)] hover:underline"
 				>
+					Open ↗
+				</a>
 			{/if}
 			{#if pdfUrl}
 				<a
 					href={safeHref(pdfUrl)}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="text-sm text-[var(--color-accent)] hover:underline">PDF</a
+					class="text-sm text-[var(--color-accent)] hover:underline"
 				>
+					PDF
+				</a>
 			{/if}
 			{#if url}
 				<a
 					href={safeHref(url)}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="text-sm text-[var(--color-accent)] hover:underline break-all">{url}</a
+					class="text-sm text-[var(--color-accent)] hover:underline break-all"
 				>
+					{url}
+				</a>
 			{/if}
 		</div>
 	</div>
@@ -227,8 +233,10 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					class="text-sm text-[var(--color-accent)] hover:underline"
-					data-testid="live-preview-open">Open in new tab ↗</a
+					data-testid="live-preview-open"
 				>
+					Open in new tab ↗
+				</a>
 			</div>
 		{/if}
 	{/if}

@@ -91,9 +91,9 @@
 	>
 		<span class="inline-flex items-center gap-1.5 text-[var(--color-text)]">
 			<Music class="h-3.5 w-3.5" />
-			<span class="font-medium" data-testid="music-select-track"
-				>{str(data.track_key) ?? str(data.track_id) ?? 'Unnamed bed'}</span
-			>
+			<span class="font-medium" data-testid="music-select-track">
+				{str(data.track_key) ?? str(data.track_id) ?? 'Unnamed bed'}
+			</span>
 		</span>
 		{#if durationS != null}
 			<Duration seconds={durationS} class="text-xs" />
@@ -102,8 +102,9 @@
 			{#if bpm != null}
 				{Math.round(bpm)} BPM{#if bpmConfidence != null}<span
 						data-testid="music-select-bpm-confidence"
-						>, {Math.round(bpmConfidence * 100)}% confidence</span
-					>{/if}
+					>
+						, {Math.round(bpmConfidence * 100)}% confidence
+					</span>{/if}
 			{:else}
 				BPM not measured
 			{/if}
@@ -112,9 +113,9 @@
 			<Pill tone="neutral"><span data-testid="music-select-meter">{data.meter}</span></Pill>
 		{/if}
 		{#if str(data.grid_source)}
-			<Pill tone="neutral"
-				><span data-testid="music-select-grid-source">grid: {data.grid_source}</span></Pill
-			>
+			<Pill tone="neutral">
+				<span data-testid="music-select-grid-source">grid: {data.grid_source}</span>
+			</Pill>
 		{/if}
 	</div>
 
@@ -134,10 +135,10 @@
 			data-testid="music-select-warning-no-grid"
 		>
 			<AlertTriangle class="mt-0.5 h-4 w-4 shrink-0" />
-			<span
-				><strong>No beat grid</strong> — this bed could not be beat-tracked, so the cut will be EVEN-SPACED
-				rather than musical.</span
-			>
+			<span>
+				<strong>No beat grid</strong> — this bed could not be beat-tracked, so the cut will be EVEN-SPACED
+				rather than musical.
+			</span>
 		</p>
 	{:else}
 		<div class="space-y-1" data-testid="music-select-grid">

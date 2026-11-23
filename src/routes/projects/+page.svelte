@@ -258,8 +258,10 @@
         {activeType === chip.value
 					? 'bg-[var(--color-accent)] text-[var(--color-on-primary)] border-[var(--color-accent)]'
 					: 'bg-[var(--color-surface)] text-[var(--color-text-muted)] border-[var(--color-border)] hover:bg-[var(--color-surface-strong)] hover:border-[var(--color-border-strong)]'}"
-				onclick={() => navigate({ type: chip.value, page: 1 })}>{chip.label}</button
+				onclick={() => navigate({ type: chip.value, page: 1 })}
 			>
+				{chip.label}
+			</button>
 		{/each}
 	</div>
 
@@ -386,12 +388,13 @@
 											project.last_run_status,
 											project.last_run_pause_reason
 										)}
-										>{projectStatusLabel(
+									>
+										{projectStatusLabel(
 											project.status,
 											project.last_run_status,
 											project.last_run_pause_reason
-										)}</Pill
-									>
+										)}
+									</Pill>
 								</div>
 							</div>
 							<p class="text-xs text-[var(--color-text-muted)] flex items-center gap-1.5">
@@ -418,12 +421,9 @@
 								</span>
 								{#if project.last_run_status}
 									<span class="inline-flex items-center gap-1">
-										<Pill tone={runStatusTone(project.last_run_status)}
-											>{runStatusLabel(
-												project.last_run_status,
-												project.last_run_pause_reason
-											)}</Pill
-										>
+										<Pill tone={runStatusTone(project.last_run_status)}>
+											{runStatusLabel(project.last_run_status, project.last_run_pause_reason)}
+										</Pill>
 									</span>
 								{/if}
 							</div>
@@ -443,12 +443,12 @@
 								>
 									<CheckCircle2 class="h-3 w-3" /> Finished {fmtRel(project.finished_at)}
 								</span>
-								<span title={formatDateTime(project.updated_at)}
-									>Updated {fmtRel(project.updated_at)}</span
-								>
-								<span class="truncate text-right" title={`Owner ${project.owner_subject_id}`}
-									>Owner {project.owner_subject_id.slice(0, 8)}</span
-								>
+								<span title={formatDateTime(project.updated_at)}>
+									Updated {fmtRel(project.updated_at)}
+								</span>
+								<span class="truncate text-right" title={`Owner ${project.owner_subject_id}`}>
+									Owner {project.owner_subject_id.slice(0, 8)}
+								</span>
 							</div>
 						</div>
 					</a>
@@ -516,13 +516,17 @@
 										<a
 											href={resolve(`/projects/${project.id}`)}
 											class="font-medium text-[var(--color-text)] hover:text-[var(--color-accent)] truncate block"
-											title={project.title}>{project.title}</a
+											title={project.title}
 										>
+											{project.title}
+										</a>
 										{#if project.source_url}
 											<span
 												class="block text-xs text-[var(--color-text-muted)] truncate"
-												title={project.source_url}>{extractHostname(project.source_url)}</span
+												title={project.source_url}
 											>
+												{extractHostname(project.source_url)}
+											</span>
 										{/if}
 									</div>
 								</div>
@@ -537,18 +541,19 @@
 										project.last_run_status,
 										project.last_run_pause_reason
 									)}
-									>{projectStatusLabel(
+								>
+									{projectStatusLabel(
 										project.status,
 										project.last_run_status,
 										project.last_run_pause_reason
-									)}</Pill
-								>
+									)}
+								</Pill>
 							</td>
 							<td class="px-4 py-2.5">
 								{#if project.last_run_status}
-									<Pill tone={runStatusTone(project.last_run_status)}
-										>{runStatusLabel(project.last_run_status, project.last_run_pause_reason)}</Pill
-									>
+									<Pill tone={runStatusTone(project.last_run_status)}>
+										{runStatusLabel(project.last_run_status, project.last_run_pause_reason)}
+									</Pill>
 								{:else}
 									<span class="text-[var(--color-text-muted)]">—</span>
 								{/if}
@@ -558,16 +563,22 @@
 							</td>
 							<td
 								class="px-4 py-2.5 text-[var(--color-text-muted)] whitespace-nowrap"
-								title={formatDateTime(project.created_at)}>{fmtRel(project.created_at)}</td
+								title={formatDateTime(project.created_at)}
 							>
+								{fmtRel(project.created_at)}
+							</td>
 							<td
 								class="px-4 py-2.5 text-[var(--color-text-muted)] whitespace-nowrap"
-								title={formatDateTime(project.finished_at)}>{fmtRel(project.finished_at)}</td
+								title={formatDateTime(project.finished_at)}
 							>
+								{fmtRel(project.finished_at)}
+							</td>
 							<td
 								class="px-4 py-2.5 text-[var(--color-text-muted)] whitespace-nowrap"
-								title={formatDateTime(project.updated_at)}>{fmtRel(project.updated_at)}</td
+								title={formatDateTime(project.updated_at)}
 							>
+								{fmtRel(project.updated_at)}
+							</td>
 							<td class="px-4 py-2.5 text-right">
 								<button
 									type="button"

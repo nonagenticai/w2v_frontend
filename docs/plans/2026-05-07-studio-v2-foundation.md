@@ -574,8 +574,10 @@ Replace the section that renders status tabs with a stacked `[Type chips] [Statu
              {activeType === chip.value
 				? 'bg-primary text-primary-fg'
 				: 'bg-surface-2 text-text-secondary hover:bg-surface-3'}"
-			onclick={() => (activeType = chip.value)}>{chip.label}</button
+			onclick={() => (activeType = chip.value)}
 		>
+			{chip.label}
+		</button>
 	{/each}
 </div>
 ```

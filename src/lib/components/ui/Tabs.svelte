@@ -61,8 +61,10 @@
 				<span
 					class="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded-full text-xs {isActive
 						? 'bg-[var(--color-accent-bg)] text-[var(--color-accent-text)]'
-						: 'bg-[var(--color-surface-strong)] text-[var(--color-text-muted)]'}">{item.count}</span
+						: 'bg-[var(--color-surface-strong)] text-[var(--color-text-muted)]'}"
 				>
+					{item.count}
+				</span>
 			{/if}
 		</button>
 	{/each}

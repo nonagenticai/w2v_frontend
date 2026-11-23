@@ -72,8 +72,10 @@
 						<a
 							href={safeHref(fixHref(w.stageName))}
 							class="text-xs {tone} underline"
-							data-testid="{itemTestId}-fix-link">Fix and rerun this step</a
+							data-testid="{itemTestId}-fix-link"
 						>
+							Fix and rerun this step
+						</a>
 					{/if}
 				</div>
 				<ul class="mt-0.5 space-y-0.5">
@@ -81,9 +83,9 @@
 						<li class="text-sm text-[var(--color-text)] break-words" data-testid={itemTestId}>
 							{#if item.code}
 								<span class="font-medium">{degradationCodeTitle(item.code)}:</span>
-								<span class="font-mono text-[11px] text-[var(--color-text-muted)]"
-									>({item.code})</span
-								>
+								<span class="font-mono text-[11px] text-[var(--color-text-muted)]">
+									({item.code})
+								</span>
 							{/if}
 							{item.detail}
 						</li>

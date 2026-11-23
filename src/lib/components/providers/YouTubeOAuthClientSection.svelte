@@ -125,9 +125,9 @@
 			<div class="flex flex-wrap items-center gap-2">
 				<dt class="text-text-muted">Authorized redirect URI to register in Google Cloud:</dt>
 				<dd class="flex min-w-0 items-center gap-2">
-					<code class="break-all font-mono text-text" data-testid="youtube-redirect-uri"
-						>{settings.redirect_uri}</code
-					>
+					<code class="break-all font-mono text-text" data-testid="youtube-redirect-uri">
+						{settings.redirect_uri}
+					</code>
 					<Button variant="ghost" size="sm" onclick={copyRedirect}>Copy</Button>
 				</dd>
 			</div>
@@ -165,13 +165,13 @@
 			</p>
 			<div class="flex flex-wrap justify-end gap-2">
 				{#if settings.oauth_client_id}
-					<Button variant="danger" size="sm" disabled={saving} onclick={() => (removeOpen = true)}
-						>Remove client</Button
-					>
+					<Button variant="danger" size="sm" disabled={saving} onclick={() => (removeOpen = true)}>
+						Remove client
+					</Button>
 				{/if}
-				<Button variant="primary" size="sm" type="submit" loading={saving} disabled={!canSave}
-					>Save client</Button
-				>
+				<Button variant="primary" size="sm" type="submit" loading={saving} disabled={!canSave}>
+					Save client
+				</Button>
 			</div>
 		</form>
 

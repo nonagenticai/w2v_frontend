@@ -40,9 +40,9 @@
 			<div class="flex items-center justify-between gap-2">
 				<span class="inline-flex items-center gap-1.5 text-[var(--color-accent)]">
 					<Icon class="h-4 w-4" />
-					<span class="text-[10px] uppercase tracking-wide text-[var(--color-text-muted)]"
-						>{str(shot.visual_type) ?? 'shot'}</span
-					>
+					<span class="text-[10px] uppercase tracking-wide text-[var(--color-text-muted)]">
+						{str(shot.visual_type) ?? 'shot'}
+					</span>
 				</span>
 				<span class="text-[10px] tabular-nums text-[var(--color-text-muted)]">#{i + 1}</span>
 			</div>

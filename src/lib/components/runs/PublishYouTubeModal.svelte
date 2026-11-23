@@ -50,12 +50,14 @@
 		<a
 			href={resolve('/providers')}
 			class="font-semibold text-[var(--color-text)] underline"
-			data-testid="youtube-providers-link">Providers</a
-		> page
-	{:else}
-		<span data-testid="youtube-admin-must-connect"
-			>A workspace admin must {action.toLowerCase()} on the Providers page</span
+			data-testid="youtube-providers-link"
 		>
+			Providers
+		</a> page
+	{:else}
+		<span data-testid="youtube-admin-must-connect">
+			A workspace admin must {action.toLowerCase()} on the Providers page
+		</span>
 	{/if}
 {/snippet}
 
@@ -111,9 +113,9 @@
 			{/if}
 			<Input name="yt-title" label="Title" bind:value={title} required />
 			<div class="flex flex-col gap-1.5">
-				<label for="yt-description" class="text-sm font-medium text-[var(--color-text-muted)]"
-					>Description</label
-				>
+				<label for="yt-description" class="text-sm font-medium text-[var(--color-text-muted)]">
+					Description
+				</label>
 				<textarea
 					id="yt-description"
 					name="yt-description"
@@ -123,9 +125,9 @@
 				></textarea>
 			</div>
 			<div class="flex flex-col gap-1.5">
-				<label for="yt-privacy" class="text-sm font-medium text-[var(--color-text-muted)]"
-					>Visibility</label
-				>
+				<label for="yt-privacy" class="text-sm font-medium text-[var(--color-text-muted)]">
+					Visibility
+				</label>
 				<select
 					id="yt-privacy"
 					name="yt-privacy"

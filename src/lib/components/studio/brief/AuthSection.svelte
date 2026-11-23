@@ -289,8 +289,9 @@
 						class="ml-1 font-semibold underline"
 						data-testid="auth-signs-into-use-source"
 						onclick={() => setAuthField('signs_into', siteOrigin ?? undefined)}
-						>Use {siteOrigin}</button
 					>
+						Use {siteOrigin}
+					</button>
 				</p>
 			{/if}
 		{/if}

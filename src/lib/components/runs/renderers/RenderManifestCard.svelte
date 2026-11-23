@@ -183,16 +183,18 @@
 			{#if masterSeed != null}
 				<span
 					class="inline-flex items-center rounded-full border border-[var(--color-success-border)] bg-[var(--color-success-bg)] px-2 py-0.5 text-[11px] font-medium text-[var(--color-success-text)]"
-					data-testid="reproducible-badge">Reproducible</span
+					data-testid="reproducible-badge"
 				>
-				<span class="font-mono text-xs text-[var(--color-text-muted)]"
-					>seed <span class="text-[var(--color-text)]">{masterSeed}</span></span
-				>
+					Reproducible
+				</span>
+				<span class="font-mono text-xs text-[var(--color-text-muted)]">
+					seed <span class="text-[var(--color-text)]">{masterSeed}</span>
+				</span>
 			{/if}
 			{#if inputHash}
-				<span class="font-mono text-xs text-[var(--color-text-muted)]"
-					>input <span class="text-[var(--color-text)]">{inputHash}</span></span
-				>
+				<span class="font-mono text-xs text-[var(--color-text-muted)]">
+					input <span class="text-[var(--color-text)]">{inputHash}</span>
+				</span>
 			{/if}
 		</div>
 		{#if !outputSha || !hasMastering}
@@ -213,8 +215,10 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					class="text-sm text-[var(--color-accent)] hover:underline"
-					data-testid="artifact-link">View rendered video</a
+					data-testid="artifact-link"
 				>
+					View rendered video
+				</a>
 			{/if}
 			{#if durationSeconds != null}
 				<Duration seconds={durationSeconds} />

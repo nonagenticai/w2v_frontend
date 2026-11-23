@@ -143,9 +143,9 @@
 		</span>
 		<span class="inline-flex items-center gap-1">
 			<Duration seconds={totalSeconds} class="text-xs text-[var(--color-text)]" />
-			{#if targetSeconds}<span data-testid="cut-plan-target"
-					>of <Duration seconds={targetSeconds} class="text-xs" /> requested</span
-				>{/if}
+			{#if targetSeconds}<span data-testid="cut-plan-target">
+					of <Duration seconds={targetSeconds} class="text-xs" /> requested
+				</span>{/if}
 		</span>
 		{#if bpm}
 			<span class="inline-flex items-center gap-1" data-testid="cut-plan-bpm">
@@ -157,8 +157,8 @@
 			{lockedCount} of {shots.length} beat-locked{#if unknownLockCount > 0}<span
 					data-testid="cut-plan-locked-unknown"
 				>
-					({unknownLockCount} not recorded)</span
-				>{/if}
+					({unknownLockCount} not recorded)
+				</span>{/if}
 		</span>
 	</div>
 
@@ -170,10 +170,10 @@
 			data-testid="cut-plan-warning-stubbed"
 		>
 			<AlertTriangle class="mt-0.5 h-4 w-4 shrink-0" />
-			<span
-				><strong>Even-spacing fallback</strong> — the beat-fit solver did not run. This reel is NOT cut
-				to the beat.</span
-			>
+			<span>
+				<strong>Even-spacing fallback</strong> — the beat-fit solver did not run. This reel is NOT cut
+				to the beat.
+			</span>
 		</p>
 	{/if}
 	{#if noBeatGrid}
@@ -182,9 +182,9 @@
 			data-testid="cut-plan-warning-no-grid"
 		>
 			<AlertTriangle class="mt-0.5 h-4 w-4 shrink-0" />
-			<span
-				><strong>No beat grid</strong> — the bed could not be beat-tracked, so shot starts are not musical.</span
-			>
+			<span>
+				<strong>No beat grid</strong> — the bed could not be beat-tracked, so shot starts are not musical.
+			</span>
 		</p>
 	{/if}
 	{#if shortfall > 0}
@@ -193,9 +193,9 @@
 			data-testid="cut-plan-warning-shortfall"
 		>
 			<AlertTriangle class="mt-0.5 h-4 w-4 shrink-0" />
-			<span
-				><strong>Short reel</strong> — this cut is {shortfall.toFixed(1)}s shorter than requested.</span
-			>
+			<span>
+				<strong>Short reel</strong> — this cut is {shortfall.toFixed(1)}s shorter than requested.
+			</span>
 		</p>
 	{/if}
 
@@ -288,9 +288,9 @@
 							<span
 								class="absolute inset-0 flex items-center justify-center bg-black/15 group-hover:bg-black/25"
 							>
-								<span class="rounded-full bg-black/55 p-1.5 text-white"
-									><Play class="h-4 w-4" /></span
-								>
+								<span class="rounded-full bg-black/55 p-1.5 text-white">
+									<Play class="h-4 w-4" />
+								</span>
 							</span>
 						</button>
 					{/if}
@@ -304,19 +304,19 @@
 								data-testid="cut-plan-shot-placement"
 							>
 								<Duration seconds={start} class="text-xs" />{#if beatWindow != null}<span>
-										→ <Duration seconds={start + beatWindow} class="text-xs" /></span
-									>{/if}
+										→ <Duration seconds={start + beatWindow} class="text-xs" />
+									</span>{/if}
 							</span>
 						{/if}
 						{#if speed != null && Math.abs(speed - 1) >= SPEED_EPSILON}
-							<Pill tone="accent"
-								><span data-testid="cut-plan-shot-speed">{formatSpeed(speed)}×</span></Pill
-							>
+							<Pill tone="accent">
+								<span data-testid="cut-plan-shot-speed">{formatSpeed(speed)}×</span>
+							</Pill>
 						{/if}
 						{#if shot.beat_locked === false}
-							<Pill tone="warning"
-								><span data-testid="cut-plan-shot-unlocked">not beat-locked</span></Pill
-							>
+							<Pill tone="warning">
+								<span data-testid="cut-plan-shot-unlocked">not beat-locked</span>
+							</Pill>
 						{/if}
 					</div>
 					<p class="text-xs text-[var(--color-text-muted)]" data-testid="cut-plan-shot-trim">

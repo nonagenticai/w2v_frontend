@@ -395,11 +395,9 @@
 						{/if}
 					</Pill>
 					<span data-testid="platform-cost" title={platformCost.title}>
-						<Pill tone="accent"
-							>{platformCost.unavailable
-								? 'Total cost unavailable'
-								: `${platformCost.text} total`}</Pill
-						>
+						<Pill tone="accent">
+							{platformCost.unavailable ? 'Total cost unavailable' : `${platformCost.text} total`}
+						</Pill>
 					</span>
 				</div>
 			{/if}
@@ -515,8 +513,10 @@
 										{#if llmSaved[tenant.tenant_id]}
 											<span
 												class="text-xs text-status-completed"
-												data-testid="tenant-llm-access-saved">Saved</span
+												data-testid="tenant-llm-access-saved"
 											>
+												Saved
+											</span>
 										{/if}
 									</div>
 									{#if llmErrors[tenant.tenant_id]}
@@ -582,11 +582,13 @@
 									variant="ghost"
 									size="sm"
 									loading={exportingId === tenant.tenant_id}
-									onclick={() => exportTenant(tenant)}>Export</Button
+									onclick={() => exportTenant(tenant)}
 								>
-								<Button variant="danger" size="sm" onclick={() => openDelete(tenant)}
-									>Delete…</Button
-								>
+									Export
+								</Button>
+								<Button variant="danger" size="sm" onclick={() => openDelete(tenant)}>
+									Delete…
+								</Button>
 							</div>
 						</li>
 					{/each}

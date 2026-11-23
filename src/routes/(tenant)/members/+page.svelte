@@ -302,22 +302,27 @@
 					Invite created but the email could not be sent
 				</p>
 				<p class="mt-1 text-sm text-[var(--color-text)]">
-					Resend it, or copy the link below and share it with <strong>{failedDelivery.email}</strong
-					>
+					Resend it, or copy the link below and share it with <strong>
+						{failedDelivery.email}
+					</strong>
 					yourself. The link is shown only now.
 				</p>
 				<div class="mt-2 flex items-center gap-2">
 					<code
 						class="min-w-0 flex-1 truncate rounded border border-[var(--color-border)] p-2 text-xs"
-						data-testid="invite-link">{failedDelivery.url}</code
+						data-testid="invite-link"
 					>
+						{failedDelivery.url}
+					</code>
 					<Button variant="ghost" size="sm" onclick={copyLink}>{copied ? 'Copied' : 'Copy'}</Button>
 					<Button
 						variant="secondary"
 						size="sm"
 						loading={busyId === failedDelivery.id}
-						onclick={() => failedDelivery && resendById(failedDelivery.id)}>Resend</Button
+						onclick={() => failedDelivery && resendById(failedDelivery.id)}
 					>
+						Resend
+					</Button>
 					<Button variant="ghost" size="sm" onclick={() => (failedDelivery = null)}>Dismiss</Button>
 				</div>
 			</Card>
@@ -350,8 +355,8 @@
 							<p class="truncate text-sm font-medium text-[var(--color-text)]">
 								{primary(m)}
 								{#if isSelf(m)}<span class="text-xs text-[var(--color-text-muted)]">
-										(you)</span
-									>{/if}
+										(you)
+									</span>{/if}
 							</p>
 							{#if secondary(m)}
 								<p class="truncate font-mono text-xs text-[var(--color-text-muted)]">
@@ -422,14 +427,18 @@
 								variant="secondary"
 								size="sm"
 								loading={busyId === inv.id}
-								onclick={() => resend(inv)}>Resend</Button
+								onclick={() => resend(inv)}
 							>
+								Resend
+							</Button>
 							<Button
 								variant="ghost"
 								size="sm"
 								disabled={busyId === inv.id}
-								onclick={() => revoke(inv)}>Revoke</Button
+								onclick={() => revoke(inv)}
 							>
+								Revoke
+							</Button>
 						</div>
 					</li>
 				{/each}
@@ -478,8 +487,10 @@
 					variant="primary"
 					size="sm"
 					loading={inviteBusy}
-					disabled={!inviteValid}>Send invite</Button
+					disabled={!inviteValid}
 				>
+					Send invite
+				</Button>
 			</div>
 		</form>
 	{/if}
@@ -494,8 +505,9 @@
 				to yourself — another admin has to.
 			</p>
 			<div class="flex justify-end gap-2">
-				<Button variant="ghost" size="sm" onclick={() => (confirmDemoteOpen = false)}>Cancel</Button
-				>
+				<Button variant="ghost" size="sm" onclick={() => (confirmDemoteOpen = false)}>
+					Cancel
+				</Button>
 				<Button variant="danger" size="sm" onclick={confirmDemote}>Make me a member</Button>
 			</div>
 		</div>
@@ -513,8 +525,9 @@
 				{/if}
 			</p>
 			<div class="flex justify-end gap-2">
-				<Button variant="ghost" size="sm" onclick={() => (confirmRemoveOpen = false)}>Cancel</Button
-				>
+				<Button variant="ghost" size="sm" onclick={() => (confirmRemoveOpen = false)}>
+					Cancel
+				</Button>
 				<Button variant="danger" size="sm" onclick={confirmRemove}>Remove</Button>
 			</div>
 		</div>

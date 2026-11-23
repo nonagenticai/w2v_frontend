@@ -83,10 +83,10 @@
 <div class="space-y-3" data-testid="graphics-overlay-cards">
 	<div class="flex items-center gap-1.5 text-xs text-[var(--color-text-muted)]">
 		<Sparkles class="h-3.5 w-3.5" />
-		<span data-testid="graphics-card-count"
-			>{cards.length}
-			{cards.length === 1 ? 'overlay' : 'overlays'} designed</span
-		>
+		<span data-testid="graphics-card-count">
+			{cards.length}
+			{cards.length === 1 ? 'overlay' : 'overlays'} designed
+		</span>
 	</div>
 
 	<!-- Outage. Renders whenever the flag is set, INCLUDING with zero cards —
@@ -98,10 +98,10 @@
 			data-testid="graphics-warning-render-failed"
 		>
 			<AlertTriangle class="mt-0.5 h-4 w-4 shrink-0" />
-			<span
-				><strong>Graphics failed to render</strong> — the reel will ship with NO graphics on it. The footage
-				and the cut are unaffected; re-run this stage to try again.</span
-			>
+			<span>
+				<strong>Graphics failed to render</strong> — the reel will ship with NO graphics on it. The footage
+				and the cut are unaffected; re-run this stage to try again.
+			</span>
 		</p>
 	{:else if cards.length === 0}
 		<!-- The editorial half of the same empty list. NEUTRAL on purpose: nothing
@@ -201,9 +201,9 @@
 								<track kind="captions" />
 							</video>
 							<span class="absolute inset-0 flex items-center justify-center">
-								<span class="rounded-full bg-black/55 p-1.5 text-white"
-									><Play class="h-4 w-4" /></span
-								>
+								<span class="rounded-full bg-black/55 p-1.5 text-white">
+									<Play class="h-4 w-4" />
+								</span>
 							</span>
 						</button>
 					{/if}

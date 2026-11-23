@@ -186,8 +186,10 @@
 						variant="danger"
 						size="sm"
 						disabled={loading}
-						onclick={() => (disconnectOpen = true)}>Disconnect</Button
+						onclick={() => (disconnectOpen = true)}
 					>
+						Disconnect
+					</Button>
 				{/if}
 				{#if showConnect}
 					<Button variant="primary" size="sm" disabled={loading} onclick={connect}>

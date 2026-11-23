@@ -111,9 +111,9 @@
 				{#if !loading && !error}
 					<Pill tone="neutral">{total} {total === 1 ? 'run' : 'runs'}</Pill>
 					{#if view === 'running' && orphanCount > 0}
-						<span data-testid="orphan-summary"
-							><Pill tone="danger">{orphanCount} orphaned</Pill></span
-						>
+						<span data-testid="orphan-summary">
+							<Pill tone="danger">{orphanCount} orphaned</Pill>
+						</span>
 					{/if}
 					{#if refreshing}
 						<span class="text-xs text-[var(--color-text-muted)]" data-testid="refreshing">↻</span>
@@ -170,9 +170,9 @@
 								<a class="truncate hover:underline" href={resolve(`/runs/${run.run_id}`)}>
 									{run.project_title}
 								</a>
-								<span data-testid="run-status"
-									><Pill tone={statusTone(run.status)}>{statusText(run)}</Pill></span
-								>
+								<span data-testid="run-status">
+									<Pill tone={statusTone(run.status)}>{statusText(run)}</Pill>
+								</span>
 								{#if isOrphan(run)}
 									<span data-testid="orphan-badge"><Pill tone="danger">orphan</Pill></span>
 								{:else if run.status === 'running' && run.lease_present === true}

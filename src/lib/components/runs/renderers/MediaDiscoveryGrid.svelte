@@ -87,9 +87,9 @@
 					{/if}
 				</button>
 				<div class="flex items-center justify-between gap-1">
-					<span class="truncate text-xs text-[var(--color-text-muted)]"
-						>{str(it.title) ?? str(it.source) ?? ''}</span
-					>
+					<span class="truncate text-xs text-[var(--color-text-muted)]">
+						{str(it.title) ?? str(it.source) ?? ''}
+					</span>
 					{#if str(it.media_type)}<Pill tone="neutral">{it.media_type}</Pill>{/if}
 				</div>
 				{#if q != null}

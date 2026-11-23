@@ -184,9 +184,9 @@
 				</p>
 				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
 					<div class="flex flex-col gap-1.5 sm:col-span-2">
-						<label for="music-file" class="text-sm font-medium text-[var(--color-text-muted)]"
-							>Audio file</label
-						>
+						<label for="music-file" class="text-sm font-medium text-[var(--color-text-muted)]">
+							Audio file
+						</label>
 						<input
 							id="music-file"
 							name="music-file"
@@ -281,9 +281,9 @@
 		>
 			{#snippet action()}
 				{#if canEdit && limits}
-					<Button variant="primary" onclick={() => document.getElementById('music-file')?.focus()}
-						>Upload a track</Button
-					>
+					<Button variant="primary" onclick={() => document.getElementById('music-file')?.focus()}>
+						Upload a track
+					</Button>
 				{/if}
 			{/snippet}
 		</EmptyState>
@@ -296,14 +296,15 @@
 							<div>
 								<span class="font-mono text-sm text-[var(--color-text)]">{t.sound_id}</span>
 								<span class="ml-2 text-xs text-[var(--color-text-muted)]">{t.category}</span>
-								<span class="ml-2 text-xs text-[var(--color-text-muted)]"
-									>{formatDuration(t.duration_s)} · {formatBytes(t.bytes)}</span
-								>
+								<span class="ml-2 text-xs text-[var(--color-text-muted)]">
+									{formatDuration(t.duration_s)} · {formatBytes(t.bytes)}
+								</span>
 								<span
 									class="ml-2 text-xs text-[var(--color-text-muted)]"
 									title="Rights declared by your workspace, not verified by the platform"
-									>Rights: tenant-declared</span
 								>
+									Rights: tenant-declared
+								</span>
 							</div>
 							{#if canEdit && editingId !== t.id}
 								<div class="flex gap-2">
@@ -315,8 +316,10 @@
 										onclick={() => {
 											pendingDelete = t;
 											deleteOpen = true;
-										}}>Delete</Button
+										}}
 									>
+										Delete
+									</Button>
 								</div>
 							{/if}
 						</div>
@@ -345,11 +348,13 @@
 										variant="primary"
 										size="sm"
 										disabled={busyId === t.id || tooLong(editDescription)}
-										onclick={() => saveEdit(t)}>Save</Button
+										onclick={() => saveEdit(t)}
 									>
-									<Button variant="ghost" size="sm" onclick={() => (editingId = null)}
-										>Cancel</Button
-									>
+										Save
+									</Button>
+									<Button variant="ghost" size="sm" onclick={() => (editingId = null)}>
+										Cancel
+									</Button>
 								</div>
 							</div>
 						{:else if t.description}

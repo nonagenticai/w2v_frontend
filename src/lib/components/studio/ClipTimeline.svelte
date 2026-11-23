@@ -228,8 +228,9 @@
 							data-testid="clip-thumb-video"
 						></video>
 						<span class="absolute inset-0 flex items-center justify-center bg-black/15">
-							<span class="rounded-full bg-black/55 p-1.5 text-white"><Play class="h-4 w-4" /></span
-							>
+							<span class="rounded-full bg-black/55 p-1.5 text-white">
+								<Play class="h-4 w-4" />
+							</span>
 						</span>
 					{:else}
 						<span

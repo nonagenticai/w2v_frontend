@@ -175,9 +175,9 @@
 							{draft.reason}
 						</p>
 					{/if}
-					<Button variant="primary" size="sm" type="submit" loading={saving} disabled={!draft.ok}
-						>Save platform channel</Button
-					>
+					<Button variant="primary" size="sm" type="submit" loading={saving} disabled={!draft.ok}>
+						Save platform channel
+					</Button>
 				</div>
 			</form>
 

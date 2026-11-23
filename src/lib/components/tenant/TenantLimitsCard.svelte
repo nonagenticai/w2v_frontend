@@ -64,8 +64,9 @@
 				{#each report.limits as row (row.key)}
 					<li class="px-5 py-3" data-testid="tenant-limit-row" data-key={row.key}>
 						<div class="flex flex-wrap items-baseline justify-between gap-2">
-							<span class="text-sm font-medium text-[var(--color-text)]">{limitLabel(row.key)}</span
-							>
+							<span class="text-sm font-medium text-[var(--color-text)]">
+								{limitLabel(row.key)}
+							</span>
 							<span
 								data-testid="tenant-limit-enforced"
 								data-enforced={row.enforced ? 'true' : 'false'}

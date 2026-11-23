@@ -71,9 +71,9 @@
 				<ol class="flex flex-col gap-1 text-sm">
 					{#each segments as segment, i (`${i}-${segment.start}`)}
 						<li class="flex gap-2">
-							<span class="shrink-0 font-mono text-xs text-[var(--color-text-muted)]"
-								>{segment.start.toFixed(1)}s</span
-							>
+							<span class="shrink-0 font-mono text-xs text-[var(--color-text-muted)]">
+								{segment.start.toFixed(1)}s
+							</span>
 							<span>{segment.text}</span>
 						</li>
 					{/each}

@@ -392,8 +392,7 @@
 						placeholder="Burned-in caption (leave blank for none)"
 						data-testid="edit-caption"
 						class="resize-y rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-bg)] px-2 py-1 text-sm text-[var(--color-text)]"
-						oninput={(e) => onEditChange?.('caption', e.currentTarget.value)}
-					></textarea>
+						oninput={(e) => onEditChange?.('caption', e.currentTarget.value)}></textarea>
 				</label>
 				<label class="flex flex-col gap-1 text-xs text-[var(--color-text-muted)]">
 					Framing

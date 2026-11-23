@@ -34,14 +34,14 @@
 					<li
 						class="flex items-center justify-between rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 text-sm"
 					>
-						<span class="text-[var(--color-text)]"
-							><span class="text-[var(--color-text-muted)] tabular-nums mr-1.5">{i + 1}.</span>{str(
+						<span class="text-[var(--color-text)]">
+							<span class="text-[var(--color-text-muted)] tabular-nums mr-1.5">{i + 1}.</span>{str(
 								ch.title
-							) ?? 'Chapter'}</span
-						>
-						{#if str(ch.page_range)}<span class="text-xs text-[var(--color-text-muted)]"
-								>{ch.page_range}</span
-							>{/if}
+							) ?? 'Chapter'}
+						</span>
+						{#if str(ch.page_range)}<span class="text-xs text-[var(--color-text-muted)]">
+								{ch.page_range}
+							</span>{/if}
 					</li>
 				{/each}
 			</ol>

@@ -225,17 +225,17 @@
 											<span class="text-xs text-[var(--color-text-muted)]">{rec.speaker}</span>
 										{/if}
 										{#if typeof rec.seconds === 'number'}
-											<span class="text-xs text-[var(--color-text-muted)] tabular-nums"
-												>{(rec.seconds as number).toFixed(1)}s</span
-											>
+											<span class="text-xs text-[var(--color-text-muted)] tabular-nums">
+												{(rec.seconds as number).toFixed(1)}s
+											</span>
 										{:else if typeof rec.score === 'number'}
-											<span class="text-xs text-[var(--color-text-muted)] tabular-nums"
-												>{rec.score}</span
-											>
+											<span class="text-xs text-[var(--color-text-muted)] tabular-nums">
+												{rec.score}
+											</span>
 										{:else if typeof rec.start_seconds === 'number'}
-											<span class="text-xs text-[var(--color-text-muted)] tabular-nums"
-												>@{(rec.start_seconds as number).toFixed(0)}s</span
-											>
+											<span class="text-xs text-[var(--color-text-muted)] tabular-nums">
+												@{(rec.start_seconds as number).toFixed(0)}s
+											</span>
 										{/if}
 									</span>
 								</div>

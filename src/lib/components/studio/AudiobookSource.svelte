@@ -146,15 +146,15 @@
 				<span class="text-sm text-[var(--color-text-muted)]">Uploading…</span>
 			{:else if brief.manuscript_ref}
 				<FileCheck class="h-5 w-5 text-[var(--color-success)]" />
-				<span class="text-sm text-[var(--color-text)]" data-testid="manuscript-name"
-					>{brief.manuscript_name}</span
-				>
+				<span class="text-sm text-[var(--color-text)]" data-testid="manuscript-name">
+					{brief.manuscript_name}
+				</span>
 				<span class="ml-auto text-xs text-[var(--color-text-muted)]">Replace</span>
 			{:else}
 				<Upload class="h-5 w-5 text-[var(--color-text-muted)]" />
-				<span class="text-sm text-[var(--color-text-muted)]"
-					>Upload a .txt, .docx, or .epub manuscript</span
-				>
+				<span class="text-sm text-[var(--color-text-muted)]">
+					Upload a .txt, .docx, or .epub manuscript
+				</span>
 			{/if}
 			<input
 				type="file"
@@ -249,9 +249,9 @@
 				class="mt-0.5 h-4 w-4 rounded border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]"
 			/>
 			<span>
-				<span class="block text-sm font-medium text-[var(--color-text-muted)]"
-					>Auto-suggest pronunciations</span
-				>
+				<span class="block text-sm font-medium text-[var(--color-text-muted)]">
+					Auto-suggest pronunciations
+				</span>
 				<span class="block text-xs text-[var(--color-text-muted)]">
 					During ingest, propose pronunciations for names and invented words so the narration says
 					them correctly. Off = narrate as written.
@@ -271,9 +271,9 @@
 				class="mt-0.5 h-4 w-4 rounded border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent)]"
 			/>
 			<span>
-				<span class="block text-sm font-medium text-[var(--color-text-muted)]"
-					>Skip review — render straight through</span
-				>
+				<span class="block text-sm font-medium text-[var(--color-text-muted)]">
+					Skip review — render straight through
+				</span>
 				<span class="block text-xs text-[var(--color-text-muted)]">
 					Render the whole book from this brief without stopping. By default the run pauses after
 					ingest and casting so you can review chapters, pronunciations, and voices before paid

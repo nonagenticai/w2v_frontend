@@ -33,8 +33,9 @@
 				<a
 					href={resolve(`/projects/${projectId}/verbatim`)}
 					class="text-[var(--color-accent)] hover:text-[var(--color-accent-strong)]"
-					>project verbatim</a
 				>
+					project verbatim
+				</a>
 				page.
 			</p>
 		</div>

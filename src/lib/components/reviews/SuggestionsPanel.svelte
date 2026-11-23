@@ -113,8 +113,9 @@
 		{:else if rankingConfidence}
 			<div class="mt-3 rounded-lg border border-border bg-surface/50 p-3">
 				<div class="flex flex-wrap items-center gap-2">
-					<span class="text-[10px] uppercase tracking-wide text-text-muted">Ranking confidence</span
-					>
+					<span class="text-[10px] uppercase tracking-wide text-text-muted">
+						Ranking confidence
+					</span>
 					<Badge variant={confidenceColor(rankingConfidence.level)}>
 						{rankingConfidence.level.toUpperCase()}
 					</Badge>
@@ -153,9 +154,9 @@
 							<div class="flex items-center gap-2">
 								<span class="text-xs font-semibold text-text-muted">#{idx + 1}</span>
 								<Badge variant={roiColor(ranked.roi_score)}>{ranked.priority_label}</Badge>
-								<Badge variant={roiColor(ranked.roi_score)}
-									>ROI {ranked.roi_score.toFixed(2)}x</Badge
-								>
+								<Badge variant={roiColor(ranked.roi_score)}>
+									ROI {ranked.roi_score.toFixed(2)}x
+								</Badge>
 							</div>
 							<Badge variant={categoryColor(proposal.category)}>{proposal.category}</Badge>
 						</div>
@@ -170,19 +171,19 @@
 							<span class="text-[10px] text-text-muted uppercase tracking-wide">Video impact:</span>
 							<Badge variant={impactColor(proposal.impact)}>{proposal.impact}</Badge>
 							<Badge variant="info">{Math.round(ranked.video_impact_score * 100)}/100</Badge>
-							<span class="text-[10px] text-text-muted uppercase tracking-wide ml-1"
-								>Complexity:</span
-							>
+							<span class="text-[10px] text-text-muted uppercase tracking-wide ml-1">
+								Complexity:
+							</span>
 							<Badge variant={complexityColor(proposal.complexity)}>{proposal.complexity}</Badge>
 						</div>
 
 						<div class="flex flex-wrap items-center gap-2">
-							<span class="text-[10px] text-text-muted uppercase tracking-wide"
-								>Critique severity:</span
-							>
-							<Badge variant={severityColor(ranked.critique_severity)}
-								>{ranked.critique_severity}</Badge
-							>
+							<span class="text-[10px] text-text-muted uppercase tracking-wide">
+								Critique severity:
+							</span>
+							<Badge variant={severityColor(ranked.critique_severity)}>
+								{ranked.critique_severity}
+							</Badge>
 							{#if ranked.matched_finding_title}
 								<span class="text-[11px] text-text-muted">
 									Matched: <span class="text-text-secondary">{ranked.matched_finding_title}</span>
@@ -193,24 +194,24 @@
 						{#if proposal.estimated_effort}
 							<p class="text-[11px] text-text-muted">
 								Effort: <span class="text-text-secondary">{proposal.estimated_effort}</span>
-								<span class="ml-2 text-text-muted"
-									>(~{ranked.redesign_effort_days.toFixed(1)} redesign days)</span
-								>
+								<span class="ml-2 text-text-muted">
+									(~{ranked.redesign_effort_days.toFixed(1)} redesign days)
+								</span>
 							</p>
 						{/if}
 
 						<p class="text-[11px] text-text-muted">
-							Estimated Claude output: <span class="text-text-secondary"
-								>{ranked.estimated_output_tokens.toLocaleString()} tokens</span
-							>
+							Estimated Claude output: <span class="text-text-secondary">
+								{ranked.estimated_output_tokens.toLocaleString()} tokens
+							</span>
 						</p>
 						<p class="text-[11px] text-text-muted">
-							Estimated token cost: <span class="text-text-secondary"
-								>${ranked.estimated_token_cost_usd.toFixed(2)}</span
-							>
-							<span class="ml-2 text-text-muted"
-								>(@ ${ranked.output_cost_per_million_usd.toFixed(2)} / 1M output tokens)</span
-							>
+							Estimated token cost: <span class="text-text-secondary">
+								${ranked.estimated_token_cost_usd.toFixed(2)}
+							</span>
+							<span class="ml-2 text-text-muted">
+								(@ ${ranked.output_cost_per_million_usd.toFixed(2)} / 1M output tokens)
+							</span>
 						</p>
 
 						{#if proposal.rationale}

@@ -187,8 +187,9 @@
 				<dt class="text-xs uppercase tracking-wide text-[var(--color-text-muted)]">Your role</dt>
 				<dd class="mt-1 flex flex-wrap gap-1.5">
 					{#if membershipRole}
-						<Pill tone="accent">{membershipRole === 'tenant_admin' ? 'admin' : membershipRole}</Pill
-						>
+						<Pill tone="accent">
+							{membershipRole === 'tenant_admin' ? 'admin' : membershipRole}
+						</Pill>
 					{:else}
 						{#each (user?.roles ?? []).filter( (r) => ['super_admin', 'tenant_admin'].includes(r) ) as role (role)}
 							<Pill tone="accent">{role}</Pill>

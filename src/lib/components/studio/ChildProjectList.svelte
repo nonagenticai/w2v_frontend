@@ -88,15 +88,16 @@
 						<GripVertical class="h-4 w-4" />
 					</span>
 				{/if}
-				<span class="text-xs text-[var(--color-text-muted)] w-8 text-right tabular-nums"
-					>#{idx + 1}</span
-				>
+				<span class="text-xs text-[var(--color-text-muted)] w-8 text-right tabular-nums">
+					#{idx + 1}
+				</span>
 				<div class="flex-1 min-w-0">
 					<a
 						href={resolve(`/projects/${child.id}`)}
 						class="block truncate text-sm font-medium text-[var(--color-text)] hover:text-[var(--color-accent)]"
-						>{child.title}</a
 					>
+						{child.title}
+					</a>
 					<p class="text-xs text-[var(--color-text-muted)]">{PROJECT_TYPE_LABELS[child.type]}</p>
 				</div>
 				<Pill tone={statusTone(child.status)}>{child.status}</Pill>
