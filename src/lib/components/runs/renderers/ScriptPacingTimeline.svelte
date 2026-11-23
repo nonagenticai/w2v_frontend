@@ -43,9 +43,9 @@
 		{#if totalSeconds > 0}
 			<Pill tone="accent"><Duration seconds={totalSeconds} /> runtime</Pill>
 		{/if}
-		<span class="text-kicker text-[var(--color-text-muted)]"
-			>{lines.length} line{lines.length === 1 ? '' : 's'}</span
-		>
+		<span class="text-kicker text-[var(--color-text-muted)]">
+			{lines.length} line{lines.length === 1 ? '' : 's'}
+		</span>
 	</div>
 
 	<ol class="space-y-2">
@@ -73,8 +73,10 @@
 					{#if coldOpen}
 						<span
 							class="inline-flex items-center rounded-full border border-[var(--color-secondary-border)] bg-[var(--color-secondary-bg)] px-2 py-0.5 text-[11px] font-medium text-[var(--color-secondary-text)]"
-							data-testid="cold-open-marker">{coldOpenLabel(line)}</span
+							data-testid="cold-open-marker"
 						>
+							{coldOpenLabel(line)}
+						</span>
 					{/if}
 				</div>
 

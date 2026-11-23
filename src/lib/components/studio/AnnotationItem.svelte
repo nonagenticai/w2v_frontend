@@ -110,8 +110,7 @@
 			class="w-full min-h-20 rounded border border-border bg-surface-raised px-2 py-1 text-xs resize-y focus:outline-none focus:border-primary-500"
 			bind:value={draft}
 			disabled={busy}
-			spellcheck
-		></textarea>
+			spellcheck></textarea>
 		{#if error}
 			<p class="text-[11px] text-status-failed">{error}</p>
 		{/if}

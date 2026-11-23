@@ -32,8 +32,10 @@
 			for={name}
 			class="text-sm font-medium {error
 				? 'text-[var(--color-danger)]'
-				: 'text-[var(--color-text-muted)]'}">{label}</label
+				: 'text-[var(--color-text-muted)]'}"
 		>
+			{label}
+		</label>
 	{/if}
 	<div class="relative">
 		<select

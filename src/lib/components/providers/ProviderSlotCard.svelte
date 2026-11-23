@@ -446,8 +446,10 @@
 										size="sm"
 										loading={loadingModels}
 										disabled={busy || !canWrite}
-										onclick={loadModels}>Load models</Button
+										onclick={loadModels}
 									>
+										Load models
+									</Button>
 								</div>
 							</div>
 						{:else}
@@ -488,29 +490,35 @@
 									<span
 										class="text-sm text-[var(--color-danger)]"
 										data-testid="provider-secret-cleared"
-										>The stored key will be removed when you save.</span
 									>
+										The stored key will be removed when you save.
+									</span>
 									<Button
 										variant="ghost"
 										size="sm"
 										disabled={!canWrite}
-										onclick={() => (secretMode = 'keep')}>Undo</Button
+										onclick={() => (secretMode = 'keep')}
 									>
+										Undo
+									</Button>
 								{:else}
 									<code
 										class="rounded border border-[var(--color-border)] px-2 py-1 text-xs"
 										data-testid="provider-secret-stored"
-										>Stored key · {conn.key_fingerprint ?? '—'}</code
 									>
-									<Button variant="secondary" size="sm" disabled={!canWrite} onclick={focusSecret}
-										>Replace</Button
-									>
+										Stored key · {conn.key_fingerprint ?? '—'}
+									</code>
+									<Button variant="secondary" size="sm" disabled={!canWrite} onclick={focusSecret}>
+										Replace
+									</Button>
 									<Button
 										variant="ghost"
 										size="sm"
 										disabled={!canWrite}
-										onclick={() => (secretMode = 'clear')}>Clear</Button
+										onclick={() => (secretMode = 'clear')}
 									>
+										Clear
+									</Button>
 								{/if}
 							</div>
 							{#if fieldErrors.secret}
@@ -547,8 +555,10 @@
 										onclick={() => {
 											secretValue = '';
 											secretMode = 'keep';
-										}}>Keep the stored key</Button
+										}}
 									>
+										Keep the stored key
+									</Button>
 								</div>
 							{/if}
 						{/if}
@@ -587,24 +597,29 @@
 							size="sm"
 							loading={removing}
 							disabled={busy || !canWriteProp}
-							onclick={() => (removeOpen = true)}>Remove</Button
+							onclick={() => (removeOpen = true)}
 						>
+							Remove
+						</Button>
 					{/if}
 					<Button
 						variant="secondary"
 						size="sm"
 						loading={testing}
 						disabled={busy || rateLimited || !spec || !canWrite}
-						onclick={runTest}>Test</Button
+						onclick={runTest}
 					>
+						Test
+					</Button>
 					<Button
 						type="submit"
 						variant="primary"
 						size="sm"
 						loading={saving}
 						disabled={busy || rateLimited || !kind || !spec || !canWrite}
-						>{saving ? 'Testing and saving…' : 'Save'}</Button
 					>
+						{saving ? 'Testing and saving…' : 'Save'}
+					</Button>
 				</div>
 			</form>
 		{/if}

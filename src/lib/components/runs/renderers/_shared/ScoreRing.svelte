@@ -56,9 +56,9 @@
 			/>
 		</svg>
 		<div class="absolute inset-0 flex items-center justify-center">
-			<span class="text-[var(--color-text)] font-semibold tabular-nums" style="font-size:0.95rem"
-				>{centre}<span class="text-[0.7em] text-[var(--color-text-muted)]">{unit}</span></span
-			>
+			<span class="text-[var(--color-text)] font-semibold tabular-nums" style="font-size:0.95rem">
+				{centre}<span class="text-[0.7em] text-[var(--color-text-muted)]">{unit}</span>
+			</span>
 		</div>
 	</div>
 	{#if caption}

@@ -66,8 +66,10 @@
 					class="flex items-center justify-center h-5 w-5 text-xs shrink-0 {isActive
 						? 'text-primary-400'
 						: 'text-text-muted'}"
-					aria-hidden="true">↳</span
+					aria-hidden="true"
 				>
+					↳
+				</span>
 			{:else}
 				<span
 					class="flex items-center justify-center h-6 w-6 rounded-full text-xs font-semibold shrink-0

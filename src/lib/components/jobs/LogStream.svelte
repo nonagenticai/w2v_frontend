@@ -150,9 +150,9 @@
 		{:else}
 			{#each logs as line, i (i)}
 				<div class="text-[var(--color-text-muted)] hover:bg-[var(--color-surface)]/50">
-					<span class="text-[var(--color-text-muted)] select-none mr-2"
-						>{String(i + 1).padStart(3, ' ')}</span
-					>{line}
+					<span class="text-[var(--color-text-muted)] select-none mr-2">
+						{String(i + 1).padStart(3, ' ')}
+					</span>{line}
 				</div>
 			{/each}
 		{/if}

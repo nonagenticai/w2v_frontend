@@ -33,12 +33,14 @@
 			<a
 				href="{resolve('/providers')}{required.settingsSuffix}"
 				class="font-semibold underline"
-				data-testid="byo-provider-settings-link">Open provider settings</a
+				data-testid="byo-provider-settings-link"
 			>
+				Open provider settings
+			</a>
 		{:else}
-			<span data-testid="byo-provider-ask-admin"
-				>Ask a workspace admin to configure it on the Providers page.</span
-			>
+			<span data-testid="byo-provider-ask-admin">
+				Ask a workspace admin to configure it on the Providers page.
+			</span>
 		{/if}
 	</p>
 </div>

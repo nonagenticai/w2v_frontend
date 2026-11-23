@@ -94,9 +94,9 @@
 	<label
 		class="flex flex-col gap-1.5 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-4"
 	>
-		<span class="text-sm font-medium text-[var(--color-text-muted)]"
-			>Audience / goal (optional)</span
-		>
+		<span class="text-sm font-medium text-[var(--color-text-muted)]">
+			Audience / goal (optional)
+		</span>
 		<input
 			type="text"
 			data-testid="audit-intent-input"

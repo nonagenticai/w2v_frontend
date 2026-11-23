@@ -307,9 +307,9 @@
 		{/if}
 		<div class="min-w-0 flex-1 space-y-1">
 			<div class="flex items-center gap-2">
-				<span class="text-sm font-semibold text-[var(--color-text)]" data-testid="audit-title"
-					>{kind.title}</span
-				>
+				<span class="text-sm font-semibold text-[var(--color-text)]" data-testid="audit-title">
+					{kind.title}
+				</span>
 				{#if grade}<Pill tone={gradeTone(grade)}>{grade}</Pill>{/if}
 				{#if llmEnriched}<Pill tone="neutral">AI-annotated</Pill>{/if}
 			</div>
@@ -327,8 +327,10 @@
 					href={safeHref(url)}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="text-sm text-[var(--color-accent)] hover:underline break-all">{url}</a
+					class="text-sm text-[var(--color-accent)] hover:underline break-all"
 				>
+					{url}
+				</a>
 			{/if}
 		</div>
 	</div>
@@ -368,9 +370,9 @@
 					<li class="grid grid-cols-[120px_1fr_auto] items-center gap-2 text-sm">
 						<span class="text-[var(--color-text-muted)]">{i + 1}. {st.label}</span>
 						{#if st.score === null}
-							<span class="col-span-2 text-xs text-[var(--color-text-muted)]"
-								>Not measured — {st.note ?? 'no data for this stage'}</span
-							>
+							<span class="col-span-2 text-xs text-[var(--color-text-muted)]">
+								Not measured — {st.note ?? 'no data for this stage'}
+							</span>
 						{:else}
 							<span class="h-2 rounded-full bg-[var(--color-surface-strong)] overflow-hidden">
 								<span
@@ -378,9 +380,9 @@
 									style={`width:${Math.round(st.score)}%;background:${barTone(Math.round(st.score))}`}
 								></span>
 							</span>
-							<span class="tabular-nums text-xs text-[var(--color-text-muted)]"
-								>{Math.round(st.score)}</span
-							>
+							<span class="tabular-nums text-xs text-[var(--color-text-muted)]">
+								{Math.round(st.score)}
+							</span>
 						{/if}
 					</li>
 				{/each}
@@ -429,15 +431,15 @@
 					{#each weights as w, i (w.dimension + '-' + i)}
 						<tr class="border-t border-[var(--color-border)]">
 							<td class="py-1 capitalize text-[var(--color-text)]">{label(w.dimension)}</td>
-							<td class="py-1 tabular-nums text-[var(--color-text-muted)]"
-								>{Math.round(w.weight * 100)}%</td
-							>
-							<td class="py-1 tabular-nums text-[var(--color-text-muted)]"
-								>{w.score === null ? 'Not measured' : Math.round(w.score)}</td
-							>
-							<td class="py-1 text-xs text-[var(--color-text-muted)]"
-								>{w.pointer ? `See the ${w.pointer}` : 'Scored here'}</td
-							>
+							<td class="py-1 tabular-nums text-[var(--color-text-muted)]">
+								{Math.round(w.weight * 100)}%
+							</td>
+							<td class="py-1 tabular-nums text-[var(--color-text-muted)]">
+								{w.score === null ? 'Not measured' : Math.round(w.score)}
+							</td>
+							<td class="py-1 text-xs text-[var(--color-text-muted)]">
+								{w.pointer ? `See the ${w.pointer}` : 'Scored here'}
+							</td>
 						</tr>
 					{/each}
 				</tbody>
@@ -473,9 +475,9 @@
 	{#if projection}
 		<p class="text-sm text-[var(--color-text-muted)]" data-testid="audit-projection">
 			Fixing the top {projection.count} finding(s):
-			<span class="font-semibold text-[var(--color-text)]"
-				>{projection.baseline} → {projection.projected}</span
-			>
+			<span class="font-semibold text-[var(--color-text)]">
+				{projection.baseline} → {projection.projected}
+			</span>
 			<span class="text-[var(--color-accent)]">({projection.deltaLabel} pts)</span>
 		</p>
 	{/if}
@@ -490,8 +492,10 @@
 					{#if b.score === null}
 						<span
 							class="col-span-2 text-xs text-[var(--color-text-muted)]"
-							data-testid="audit-bucket-not-measured">Not measured — {b.note}</span
+							data-testid="audit-bucket-not-measured"
 						>
+							Not measured — {b.note}
+						</span>
 					{:else}
 						<span class="h-2 rounded-full bg-[var(--color-surface-strong)] overflow-hidden">
 							<span
@@ -499,9 +503,9 @@
 								style={`width:${Math.round(b.score)}%;background:${barTone(Math.round(b.score))}`}
 							></span>
 						</span>
-						<span class="tabular-nums text-[var(--color-text-muted)] text-xs"
-							>{Math.round(b.score)}</span
-						>
+						<span class="tabular-nums text-[var(--color-text-muted)] text-xs">
+							{Math.round(b.score)}
+						</span>
 					{/if}
 				</div>
 			{/each}
@@ -523,12 +527,16 @@
 								<p class="text-sm text-[var(--color-text)]">
 									{#if f.rank != null}<span
 											class="mr-1 tabular-nums text-xs font-semibold text-[var(--color-text-muted)]"
-											>#{f.rank}</span
-										>{/if}{f.title || f.check_id}
+										>
+											#{f.rank}
+										</span>{/if}{f.title || f.check_id}
 								</p>
 								<span class="flex shrink-0 items-center gap-1.5">
-									{#if f.grounded === true}<Pill tone="success">grounded</Pill
-										>{:else if f.grounded === false}<Pill tone="warning">unverified</Pill>{/if}
+									{#if f.grounded === true}<Pill tone="success">
+											grounded
+										</Pill>{:else if f.grounded === false}<Pill tone="warning">
+											unverified
+										</Pill>{/if}
 									{#if f.bucket}<Pill tone="neutral">{label(f.bucket)}</Pill>{/if}
 									{#if f.severity}<Pill tone={severityTone(f.severity)}>{f.severity}</Pill>{/if}
 								</span>
@@ -561,12 +569,12 @@
 						class="space-y-1 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-surface)] p-2.5"
 					>
 						<div class="flex items-center justify-between gap-2">
-							<span class="text-sm font-medium capitalize text-[var(--color-text)]"
-								>{label(a.element)}</span
-							>
-							<span class="tabular-nums text-xs text-[var(--color-text-muted)]"
-								>{a.score === null ? 'not scored' : Math.round(a.score)}</span
-							>
+							<span class="text-sm font-medium capitalize text-[var(--color-text)]">
+								{label(a.element)}
+							</span>
+							<span class="tabular-nums text-xs text-[var(--color-text-muted)]">
+								{a.score === null ? 'not scored' : Math.round(a.score)}
+							</span>
 						</div>
 						{#if a.assessment}<p class="text-sm text-[var(--color-text-muted)]">
 								{a.assessment}

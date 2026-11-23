@@ -103,9 +103,9 @@
 		>
 			<div class="flex items-center justify-between gap-2">
 				<div class="flex items-center gap-2">
-					<span class="text-xs font-semibold tabular-nums text-[var(--color-text-muted)]"
-						>#{i + 1}</span
-					>
+					<span class="text-xs font-semibold tabular-nums text-[var(--color-text-muted)]">
+						#{i + 1}
+					</span>
 					<select
 						class={selectClass}
 						value={shot.kind}
@@ -172,8 +172,7 @@
 						class={textareaClass}
 						placeholder="What the voiceover says over this shot, word for word."
 						bind:value={shot.narration}
-						data-testid={`shot-${i}-narration`}
-					></textarea>
+						data-testid={`shot-${i}-narration`}></textarea>
 				</div>
 				<div class="grid grid-cols-2 gap-3">
 					<div>
@@ -275,8 +274,7 @@
 							placeholder={bulletsPlaceholder}
 							value={bulletsText(shot)}
 							oninput={(e) => setBullets(i, (e.currentTarget as HTMLTextAreaElement).value)}
-							data-testid={`shot-${i}-bullets`}
-						></textarea>
+							data-testid={`shot-${i}-bullets`}></textarea>
 					</div>
 				{:else if shot.slide.template === 'cta'}
 					<div>
@@ -299,8 +297,7 @@
 							class={textareaClass}
 							placeholder="Supporting line under the title."
 							bind:value={shot.slide.body}
-							data-testid={`shot-${i}-body`}
-						></textarea>
+							data-testid={`shot-${i}-body`}></textarea>
 					</div>
 				{/if}
 				<div>
@@ -311,8 +308,7 @@
 						class={textareaClass}
 						placeholder="What the voiceover says over this slide, word for word."
 						bind:value={shot.narration}
-						data-testid={`shot-${i}-narration`}
-					></textarea>
+						data-testid={`shot-${i}-narration`}></textarea>
 				</div>
 			{/if}
 		</div>

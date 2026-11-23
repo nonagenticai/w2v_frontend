@@ -235,8 +235,10 @@
 					{#if str(segment.source_id)}
 						<span
 							class="font-mono text-[11px] text-[var(--color-text-muted)]"
-							data-testid="segment-select-segment-source">{segment.source_id}</span
+							data-testid="segment-select-segment-source"
 						>
+							{segment.source_id}
+						</span>
 					{/if}
 					{#if score != null}
 						<Pill tone={score >= 0.6 ? 'success' : score >= 0.35 ? 'neutral' : 'warning'}>

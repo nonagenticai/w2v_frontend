@@ -23,8 +23,10 @@
 					type="button"
 					aria-label="Close pane"
 					class="text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
-					onclick={() => (open = false)}>×</button
+					onclick={() => (open = false)}
 				>
+					×
+				</button>
 			</header>
 		{/if}
 		<div class="flex-1 overflow-auto p-4">

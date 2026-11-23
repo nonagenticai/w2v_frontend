@@ -151,11 +151,13 @@
 				<div class="mt-2 flex items-center gap-2">
 					<code
 						class="min-w-0 flex-1 truncate rounded border border-[var(--color-border)] p-2 text-xs"
-						data-testid="api-key-secret-value">{revealed.key}</code
+						data-testid="api-key-secret-value"
 					>
-					<Button variant="secondary" size="sm" onclick={copyKey}
-						>{copied ? 'Copied' : 'Copy'}</Button
-					>
+						{revealed.key}
+					</code>
+					<Button variant="secondary" size="sm" onclick={copyKey}>
+						{copied ? 'Copied' : 'Copy'}
+					</Button>
 				</div>
 				<div class="mt-3 flex justify-end">
 					<Button variant="ghost" size="sm" onclick={() => (revealed = null)}>I've saved it</Button>
@@ -209,8 +211,10 @@
 							variant="ghost"
 							size="sm"
 							loading={busyId === k.id}
-							onclick={() => requestRevoke(k)}>Revoke</Button
+							onclick={() => requestRevoke(k)}
 						>
+							Revoke
+						</Button>
 					</li>
 				{/each}
 			</ul>
@@ -256,9 +260,15 @@
 			{/if}
 			<div class="flex justify-end gap-2">
 				<Button variant="ghost" size="sm" onclick={() => (createOpen = false)}>Cancel</Button>
-				<Button type="submit" variant="primary" size="sm" loading={creating} disabled={!name.trim()}
-					>Create</Button
+				<Button
+					type="submit"
+					variant="primary"
+					size="sm"
+					loading={creating}
+					disabled={!name.trim()}
 				>
+					Create
+				</Button>
 			</div>
 		</form>
 	{/if}

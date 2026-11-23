@@ -860,9 +860,9 @@
 			<p class="text-kicker text-[var(--color-text-muted)] flex items-center gap-1.5">
 				<a href={resolve('/projects')} class="hover:text-[var(--color-text)]">Projects</a>
 				<ChevronRight class="h-3 w-3" />
-				<a href={resolve(`/projects/${projectId}`)} class="hover:text-[var(--color-text)]"
-					>{projectTitle}</a
-				>
+				<a href={resolve(`/projects/${projectId}`)} class="hover:text-[var(--color-text)]">
+					{projectTitle}
+				</a>
 				<ChevronRight class="h-3 w-3" />
 				<span>Studio</span>
 			</p>

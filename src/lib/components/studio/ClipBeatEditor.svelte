@@ -172,9 +172,9 @@
 						<span class="cursor-grab text-[var(--color-text-muted)]" aria-label="Drag to reorder">
 							<GripVertical class="h-4 w-4" />
 						</span>
-						<span class="text-xs font-semibold tabular-nums text-[var(--color-text-muted)]"
-							>#{i + 1}</span
-						>
+						<span class="text-xs font-semibold tabular-nums text-[var(--color-text-muted)]">
+							#{i + 1}
+						</span>
 						<span class="text-xs text-[var(--color-text-muted)]">{line.id}</span>
 					</div>
 					<div class="flex items-center gap-0.5">
@@ -218,8 +218,7 @@
 						class={textareaClass}
 						placeholder="What the voiceover says over this beat, word for word."
 						bind:value={line.text}
-						data-testid={`beat-${i}-text`}
-					></textarea>
+						data-testid={`beat-${i}-text`}></textarea>
 				</div>
 
 				<div class="grid grid-cols-2 gap-3">
@@ -239,9 +238,9 @@
 							>
 								<option value="">— none —</option>
 								{#each clipOptions(line.clip) as opt (opt)}
-									<option value={opt}
-										>{clipRoster.includes(opt) ? opt : `${opt} (not in package)`}</option
-									>
+									<option value={opt}>
+										{clipRoster.includes(opt) ? opt : `${opt} (not in package)`}
+									</option>
 								{/each}
 							</select>
 						{:else}

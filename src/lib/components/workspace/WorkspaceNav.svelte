@@ -62,8 +62,9 @@
 					class="ml-0.5 inline-flex items-center rounded-full px-1.5 text-xs {isActive
 						? 'bg-[var(--color-accent-bg)] text-[var(--color-accent-text)]'
 						: 'bg-[var(--color-surface-strong)] text-[var(--color-text-muted)]'}"
-					>{section.count}</span
 				>
+					{section.count}
+				</span>
 			{/if}
 		</button>
 	{/each}

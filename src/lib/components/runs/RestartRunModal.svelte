@@ -129,8 +129,8 @@
 									<span>
 										<span class="font-medium">{stageLabel(stage.stage_name)}</span>
 										<span class="text-[var(--color-text-muted)]">
-											— {stage.reasons.map(describeReason).join(' ')}</span
-										>
+											— {stage.reasons.map(describeReason).join(' ')}
+										</span>
 									</span>
 								</li>
 							{/each}
@@ -154,8 +154,8 @@
 									<span class="font-medium">{stageLabel(stage.stage_name)}</span>
 									{#if plan.mode === 'partial'}
 										<span class="text-[var(--color-text-muted)]">
-											— {stage.reasons.map(describeReason).join(' ')}</span
-										>
+											— {stage.reasons.map(describeReason).join(' ')}
+										</span>
 									{/if}
 								</span>
 							</li>

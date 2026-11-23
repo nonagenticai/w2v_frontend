@@ -386,9 +386,9 @@
 								>
 									{deliverable.name}
 								</a>
-								<Pill tone={deliverableTone(deliverable.status)}
-									>{DELIVERABLE_STATUS_LABELS[deliverable.status] ?? deliverable.status}</Pill
-								>
+								<Pill tone={deliverableTone(deliverable.status)}>
+									{DELIVERABLE_STATUS_LABELS[deliverable.status] ?? deliverable.status}
+								</Pill>
 							</div>
 							<p class="text-xs text-[var(--color-text-muted)] mt-1">
 								{DELIVERABLE_FORMAT_LABELS[deliverable.format]}

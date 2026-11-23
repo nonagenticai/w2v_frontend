@@ -48,9 +48,9 @@
 			</p>
 		</div>
 		{#if readFailed}
-			<span data-testid="checkpoints-unknown" class="text-xs text-[var(--color-text-muted)]"
-				>Checkpoints unavailable</span
-			>
+			<span data-testid="checkpoints-unknown" class="text-xs text-[var(--color-text-muted)]">
+				Checkpoints unavailable
+			</span>
 		{:else if value.length === 0}
 			<span class="text-xs text-[var(--color-text-muted)]">Autopilot — no checkpoints</span>
 		{:else}

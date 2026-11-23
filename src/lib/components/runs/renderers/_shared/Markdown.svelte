@@ -94,14 +94,17 @@
 		{:else if seg.t === 'em'}<em>{seg.v}</em>
 		{:else if seg.t === 'code'}<code
 				class="rounded bg-[var(--color-surface-strong)] px-1 py-0.5 text-[0.85em] font-mono"
-				>{seg.v}</code
 			>
+				{seg.v}
+			</code>
 		{:else if seg.t === 'link'}<a
 				href={safeHref(seg.href)}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="text-[var(--color-accent)] hover:underline">{seg.v}</a
+				class="text-[var(--color-accent)] hover:underline"
 			>
+				{seg.v}
+			</a>
 		{:else}{seg.v}{/if}
 	{/each}
 {/snippet}

@@ -104,14 +104,16 @@
 					<div class="flex flex-wrap items-center gap-1.5">
 						<span
 							class="truncate font-mono text-xs text-[var(--color-text)]"
-							data-testid="shot-analysis-source-id">{str(source.id) ?? `Source ${i + 1}`}</span
+							data-testid="shot-analysis-source-id"
 						>
+							{str(source.id) ?? `Source ${i + 1}`}
+						</span>
 						{#if num(source.duration_s) != null}
 							<Duration seconds={num(source.duration_s)} class="text-xs" />
 						{/if}
-						<Pill tone="neutral"
-							><span data-testid="shot-analysis-cut-count">{cutCount(source)} cuts</span></Pill
-						>
+						<Pill tone="neutral">
+							<span data-testid="shot-analysis-cut-count">{cutCount(source)} cuts</span>
+						</Pill>
 					</div>
 					{#if err}
 						<p

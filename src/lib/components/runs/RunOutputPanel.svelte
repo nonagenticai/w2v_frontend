@@ -405,12 +405,14 @@
 						<Play class="h-4 w-4 text-[var(--color-accent)]" />
 						<svelte:element
 							this={headingTag}
-							class="text-base font-semibold text-[var(--color-text)]">{videoTitle}</svelte:element
+							class="text-base font-semibold text-[var(--color-text)]"
 						>
+							{videoTitle}
+						</svelte:element>
 						{#if videoDurationSeconds}
-							<span class="text-xs text-[var(--color-text-muted)]"
-								>{fmtDuration(videoDurationSeconds)}</span
-							>
+							<span class="text-xs text-[var(--color-text-muted)]">
+								{fmtDuration(videoDurationSeconds)}
+							</span>
 						{/if}
 					</div>
 					<div class="flex flex-wrap items-center gap-2">
@@ -514,13 +516,16 @@
 				data-output-kind="audio"
 			>
 				<div class="flex items-center justify-between">
-					<svelte:element this={headingTag} class="text-base font-semibold text-[var(--color-text)]"
-						>Audiobook</svelte:element
+					<svelte:element
+						this={headingTag}
+						class="text-base font-semibold text-[var(--color-text)]"
 					>
+						Audiobook
+					</svelte:element>
 					{#if audioTotalSeconds}
-						<span class="text-xs text-[var(--color-text-muted)]"
-							>{fmtDuration(audioTotalSeconds)}</span
-						>
+						<span class="text-xs text-[var(--color-text-muted)]">
+							{fmtDuration(audioTotalSeconds)}
+						</span>
 					{/if}
 				</div>
 
@@ -555,9 +560,9 @@
 											{i + 1}. {ch.title || `Chapter ${i + 1}`}
 										</p>
 										{#if ch.seconds}
-											<span class="text-xs text-[var(--color-text-muted)]"
-												>{fmtDuration(ch.seconds)}</span
-											>
+											<span class="text-xs text-[var(--color-text-muted)]">
+												{fmtDuration(ch.seconds)}
+											</span>
 										{/if}
 									</div>
 									{#if ch.artifact_url}
@@ -586,9 +591,12 @@
 				data-output-kind="redesign"
 			>
 				<div class="flex items-center justify-between gap-3 flex-wrap">
-					<svelte:element this={headingTag} class="text-base font-semibold text-[var(--color-text)]"
-						>{redesignHeading}</svelte:element
+					<svelte:element
+						this={headingTag}
+						class="text-base font-semibold text-[var(--color-text)]"
 					>
+						{redesignHeading}
+					</svelte:element>
 					<div class="flex items-center gap-3">
 						<p class="text-xs text-[var(--color-text-muted)]">
 							{#if redesignStyle}style {redesignStyle}{/if}
@@ -624,16 +632,20 @@
 								class="text-[var(--color-accent)] hover:underline font-mono break-all"
 								href={safeHref(redesignUrl)}
 								target="_blank"
-								rel="noopener noreferrer">{redesignUrl}</a
+								rel="noopener noreferrer"
 							>
+								{redesignUrl}
+							</a>
 						{/if}
 						{#if redesignHtmlIsLink}
 							<a
 								class="text-[var(--color-accent)] hover:underline"
 								href={safeHref(redesignHtmlPath)}
 								target="_blank"
-								rel="noopener noreferrer">Open redesigned HTML →</a
+								rel="noopener noreferrer"
 							>
+								Open redesigned HTML →
+							</a>
 						{/if}
 					</div>
 				{/if}
@@ -649,9 +661,9 @@
 										{visualText(v.label)}
 									</h3>
 									{#if v.role}
-										<span class="text-xs text-[var(--color-text-muted)] uppercase"
-											>{visualText(v.role)}</span
-										>
+										<span class="text-xs text-[var(--color-text-muted)] uppercase">
+											{visualText(v.role)}
+										</span>
 									{/if}
 								</div>
 								{#if v.video_url}
@@ -690,9 +702,12 @@
 				data-output-kind="report"
 			>
 				<div class="flex items-center justify-between gap-3 flex-wrap">
-					<svelte:element this={headingTag} class="text-base font-semibold text-[var(--color-text)]"
-						>Critique report</svelte:element
+					<svelte:element
+						this={headingTag}
+						class="text-base font-semibold text-[var(--color-text)]"
 					>
+						Critique report
+					</svelte:element>
 					{#if reportPdfUrl}
 						<Button variant="secondary" size="sm" href={safeHref(reportPdfUrl)}>
 							<Download class="h-4 w-4" /> Download PDF
@@ -785,13 +800,16 @@
 				data-output-kind="review"
 			>
 				<div class="flex items-center justify-between gap-3 flex-wrap">
-					<svelte:element this={headingTag} class="text-base font-semibold text-[var(--color-text)]"
-						>Review</svelte:element
+					<svelte:element
+						this={headingTag}
+						class="text-base font-semibold text-[var(--color-text)]"
 					>
+						Review
+					</svelte:element>
 					{#if reviewOverall !== null}
-						<span class="text-xs text-[var(--color-text-muted)]"
-							>overall {reviewOverall.toFixed(1)}/5</span
-						>
+						<span class="text-xs text-[var(--color-text-muted)]">
+							overall {reviewOverall.toFixed(1)}/5
+						</span>
 					{/if}
 				</div>
 
@@ -812,9 +830,9 @@
 										</h3>
 									{/if}
 									{#if typeof item.score === 'number'}
-										<span class="text-xs text-[var(--color-text-muted)] shrink-0"
-											>{item.score}/5</span
-										>
+										<span class="text-xs text-[var(--color-text-muted)] shrink-0">
+											{item.score}/5
+										</span>
 									{/if}
 								</div>
 								{#if item.rationale}

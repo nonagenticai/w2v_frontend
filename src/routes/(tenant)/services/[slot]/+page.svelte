@@ -294,8 +294,10 @@
 			<a
 				class="text-xs font-medium underline underline-offset-2"
 				href={resolve('/providers')}
-				data-testid={`${testid}-providers`}>Open Providers</a
+				data-testid={`${testid}-providers`}
 			>
+				Open Providers
+			</a>
 		{/if}
 	</div>
 {/snippet}
@@ -314,8 +316,10 @@
 						<a
 							class="text-xs underline underline-offset-2"
 							href={resolve('/providers')}
-							data-testid="service-provider-link">Set up a provider</a
+							data-testid="service-provider-link"
 						>
+							Set up a provider
+						</a>
 					{/if}
 				{/if}
 			</div>
@@ -330,8 +334,10 @@
 				class="rounded-full border px-3 py-1 text-xs {slot.id === descriptor.id
 					? 'border-[var(--color-accent)] bg-[var(--color-accent)]/10 font-medium text-[var(--color-text)]'
 					: 'border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-border-strong)]'}"
-				data-testid="service-slot-{slot.id}">{slot.label}</a
+				data-testid="service-slot-{slot.id}"
 			>
+				{slot.label}
+			</a>
 		{/each}
 	</nav>
 
@@ -350,9 +356,9 @@
 					{#each descriptor.fields as field (field.key)}
 						{#if field.kind === 'file'}
 							<div class="flex flex-col gap-1.5">
-								<label for={field.key} class="text-sm font-medium text-[var(--color-text-muted)]"
-									>{field.label}</label
-								>
+								<label for={field.key} class="text-sm font-medium text-[var(--color-text-muted)]">
+									{field.label}
+								</label>
 								<input
 									id={field.key}
 									name={field.key}
@@ -372,9 +378,9 @@
 						{:else if field.kind === 'textarea'}
 							<div class="flex flex-col gap-1.5">
 								<div class="flex flex-wrap items-center justify-between gap-2">
-									<label for={field.key} class="text-sm font-medium text-[var(--color-text-muted)]"
-										>{field.label}</label
-									>
+									<label for={field.key} class="text-sm font-medium text-[var(--color-text-muted)]">
+										{field.label}
+									</label>
 									{#if field.key === descriptor.promptField && isEnhanceTarget(descriptor.id)}
 										<span data-testid="enhance-prompt">
 											<Button
@@ -466,9 +472,9 @@
 			<Card class="p-5">
 				<div class="mb-3 flex flex-wrap items-baseline justify-between gap-2">
 					<h2 class="text-base font-semibold text-[var(--color-text)]">Result</h2>
-					<span class="text-xs text-[var(--color-text-muted)]" data-testid="result-meta"
-						>{timingOf(result)}</span
-					>
+					<span class="text-xs text-[var(--color-text-muted)]" data-testid="result-meta">
+						{timingOf(result)}
+					</span>
 				</div>
 				<RunResult run={result} />
 			</Card>
@@ -514,21 +520,26 @@
 									{#if row.run.output_kind === 'image' && row.run.status === 'succeeded' && row.media}
 										<img class="h-full w-full object-cover" src={row.media} alt="" />
 									{:else}
-										<span class="text-[10px] tracking-wide text-[var(--color-text-muted)] uppercase"
-											>{row.run.output_kind ?? row.run.status}</span
+										<span
+											class="text-[10px] tracking-wide text-[var(--color-text-muted)] uppercase"
 										>
+											{row.run.output_kind ?? row.run.status}
+										</span>
 									{/if}
 								</span>
 								<span class="min-w-0 flex-1">
 									<span
 										class="block truncate text-sm text-[var(--color-text)]"
-										data-testid="history-prompt">{runPrompt(row.run)}</span
+										data-testid="history-prompt"
 									>
+										{runPrompt(row.run)}
+									</span>
 									<span
 										class="mt-1 block text-xs text-[var(--color-text-muted)]"
 										data-testid="history-meta"
-										>{providerLabel(row.run.provider)} · {timingOf(row.run)}</span
 									>
+										{providerLabel(row.run.provider)} · {timingOf(row.run)}
+									</span>
 								</span>
 							</button>
 							{#if row.run.output_kind === 'audio' && row.run.status === 'succeeded' && row.media}

@@ -213,9 +213,9 @@
 					</h3>
 					<div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
 						<div class="flex flex-col gap-1.5 sm:col-span-2">
-							<label for="defaults-voice" class="text-sm font-medium text-text-secondary"
-								>Voice</label
-							>
+							<label for="defaults-voice" class="text-sm font-medium text-text-secondary">
+								Voice
+							</label>
 							<select
 								id="defaults-voice"
 								name="defaults-voice"

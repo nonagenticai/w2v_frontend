@@ -167,18 +167,18 @@
 	>
 		<span class="inline-flex items-center gap-1.5 text-[var(--color-text)]">
 			<Film class="h-3.5 w-3.5" />
-			<span class="font-medium tabular-nums" data-testid="footage-probe-count"
-				>{sources.length} sources</span
-			>
+			<span class="font-medium tabular-nums" data-testid="footage-probe-count">
+				{sources.length} sources
+			</span>
 		</span>
 		<span class="inline-flex items-center gap-1" data-testid="footage-probe-total">
 			<Duration seconds={totalSeconds} class="text-xs text-[var(--color-text)]" />
 			<span>of footage</span>
 		</span>
 		{#if unpreviewable > 0}
-			<span class="tabular-nums" data-testid="footage-probe-unpreviewable"
-				>{unpreviewable} without a preview</span
-			>
+			<span class="tabular-nums" data-testid="footage-probe-unpreviewable">
+				{unpreviewable} without a preview
+			</span>
 		{/if}
 	</div>
 
@@ -269,9 +269,9 @@
 							<span
 								class="absolute inset-0 flex items-center justify-center bg-black/15 group-hover:bg-black/25"
 							>
-								<span class="rounded-full bg-black/55 p-1.5 text-white"
-									><Play class="h-4 w-4" /></span
-								>
+								<span class="rounded-full bg-black/55 p-1.5 text-white">
+									<Play class="h-4 w-4" />
+								</span>
 							</span>
 						</button>
 					{/if}
@@ -282,8 +282,9 @@
 							class="truncate text-xs font-medium text-[var(--color-text)]"
 							data-testid="footage-probe-filename"
 							title={str(source.filename) ?? undefined}
-							>{str(source.filename) ?? `Source ${i + 1}`}</span
 						>
+							{str(source.filename) ?? `Source ${i + 1}`}
+						</span>
 						<Pill tone={st.tone}><span data-testid="footage-probe-status">{st.label}</span></Pill>
 					</div>
 					<p
@@ -299,26 +300,28 @@
 							class="text-[10px] uppercase tracking-wide"
 							data-testid="footage-probe-meta-label"
 							title="Measured from the uploaded source file; the tile plays a smaller preview proxy."
-							>source file</span
 						>
+							source file
+						</span>
 						{#if dur != null}
-							<span class="inline-flex items-center gap-1"
-								>· <Duration seconds={dur} class="text-xs" /></span
-							>
+							<span class="inline-flex items-center gap-1">
+								· <Duration seconds={dur} class="text-xs" />
+							</span>
 						{:else}
 							<span data-testid="footage-probe-no-duration">· duration not probed</span>
 						{/if}
-						<span
-							>· {#if res}{res}{:else}<span data-testid="footage-probe-no-resolution"
-									>resolution not probed</span
-								>{/if}</span
-						>
-						{#if fps != null}<span class="tabular-nums"
-								>· {fps.toFixed(2).replace(/\.?0+$/, '')} fps</span
-							>{/if}
+						<span>
+							· {#if res}{res}{:else}<span data-testid="footage-probe-no-resolution">
+									resolution not probed
+								</span>{/if}
+						</span>
+						{#if fps != null}<span class="tabular-nums">
+								· {fps.toFixed(2).replace(/\.?0+$/, '')} fps
+							</span>{/if}
 						{#if str(source.codec)}<span class="font-mono">· {source.codec}</span>{/if}
-						{#if size != null}<span data-testid="footage-probe-size">· {formatFileSize(size)}</span
-							>{/if}
+						{#if size != null}<span data-testid="footage-probe-size">
+								· {formatFileSize(size)}
+							</span>{/if}
 					</p>
 					{#if st.tone === 'danger'}
 						<p
@@ -326,10 +329,10 @@
 							data-testid="footage-probe-source-failed"
 						>
 							<AlertTriangle class="mt-0.5 h-3.5 w-3.5 shrink-0" />
-							<span
-								><strong>Preview render failed</strong> — this clip cannot be reviewed here; the original
-								upload is still usable by the reel.</span
-							>
+							<span>
+								<strong>Preview render failed</strong> — this clip cannot be reviewed here; the original
+								upload is still usable by the reel.
+							</span>
 						</p>
 					{/if}
 				</div>

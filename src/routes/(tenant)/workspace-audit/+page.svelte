@@ -147,12 +147,12 @@
 				{#each items as row (row.id)}
 					<li class="px-5 py-3" data-testid="audit-row">
 						<div class="flex flex-wrap items-baseline justify-between gap-2">
-							<span class="text-sm text-[var(--color-text)]" title={row.action}
-								>{auditActionLabel(row.action)}</span
-							>
-							<time class="text-xs text-[var(--color-text-muted)]" datetime={row.created_at}
-								>{new Date(row.created_at).toLocaleString()}</time
-							>
+							<span class="text-sm text-[var(--color-text)]" title={row.action}>
+								{auditActionLabel(row.action)}
+							</span>
+							<time class="text-xs text-[var(--color-text-muted)]" datetime={row.created_at}>
+								{new Date(row.created_at).toLocaleString()}
+							</time>
 						</div>
 						<div class="mt-0.5 text-xs text-[var(--color-text-muted)]" data-testid="audit-actor">
 							{#if row.actor_kind === 'platform_operator'}

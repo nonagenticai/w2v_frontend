@@ -56,9 +56,9 @@
 			<span class="flex items-center gap-1.5">
 				<a href={resolve('/projects')} class="hover:text-text-secondary">Projects</a>
 				<ChevronRight class="h-3 w-3" />
-				<a href={resolve(`/projects/${data.project.id}`)} class="hover:text-text-secondary"
-					>{data.project.title}</a
-				>
+				<a href={resolve(`/projects/${data.project.id}`)} class="hover:text-text-secondary">
+					{data.project.title}
+				</a>
 				<ChevronRight class="h-3 w-3" />
 				<span>{data.deliverable.name}</span>
 			</span>
