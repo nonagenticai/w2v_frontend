@@ -8,7 +8,7 @@
         "@sveltejs/adapter-node": "^5.5.8",
         "diff": "^9.0.0",
         "fflate": "^0.8.3",
-        "http-proxy-3": "^1.23.3",
+        "http-proxy-3": "^2.0.2",
         "keycloak-js": "^26.2.5",
         "svelte-dnd-action": "^0.9.80",
         "wavesurfer.js": "^7.12.12",
@@ -472,7 +472,7 @@
 
     "hookified": ["hookified@1.15.1", "", {}, "sha512-MvG/clsADq1GPM2KGo2nyfaWVyn9naPiXrqIe4jYjXNZQt238kWyOGrsyc/DmRAQ+Re6yeo6yX/yoNCG5KAEVg=="],
 
-    "http-proxy-3": ["http-proxy-3@1.23.3", "", { "dependencies": { "debug": "^4.4.0", "follow-redirects": "^1.16.0" } }, "sha512-zm8JCrJUwB3Rn0HJypwwDraljDt7YbF+r7Gz0exDRlaT8Yimjs5VRfwug1GrhoasMna1DjwHeEs48+iKxCozyA=="],
+    "http-proxy-3": ["http-proxy-3@2.0.2", "", { "dependencies": { "debug": "^4.4.3", "follow-redirects": "^1.16.1" } }, "sha512-JUeHVBJl3JhVvnXBi3JEcXpQaeAteidEwdeMQlp32d2o76/6trHtIz/rByB7DHsDOtUqG4QPZlW6zV9nIGjgkg=="],
 
     "https-proxy-agent": ["https-proxy-agent@7.0.6", "", { "dependencies": { "agent-base": "^7.1.2", "debug": "4" } }, "sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw=="],
 

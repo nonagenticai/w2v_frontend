@@ -54,7 +54,7 @@
 		"@sveltejs/adapter-node": "^5.5.8",
 		"diff": "^9.0.0",
 		"fflate": "^0.8.3",
-		"http-proxy-3": "^1.23.3",
+		"http-proxy-3": "^2.0.2",
 		"keycloak-js": "^26.2.5",
 		"svelte-dnd-action": "^0.9.80",
 		"wavesurfer.js": "^7.12.12"
