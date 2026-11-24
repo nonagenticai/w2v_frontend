@@ -57,7 +57,7 @@
 		"http-proxy-3": "^2.0.2",
 		"keycloak-js": "^26.2.5",
 		"svelte-dnd-action": "^0.9.80",
-		"wavesurfer.js": "^7.12.12"
+		"wavesurfer.js": "^8.1.0"
 	},
 	"lint-staged": {
 		"*.{ts,js,svelte,css,html,json,md,yaml,yml}": "prettier --write"
